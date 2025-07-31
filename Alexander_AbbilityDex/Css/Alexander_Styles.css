@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Nova+Square&family=Poppins:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime&family=IBM+Plex+Mono&family=Share+Tech+Mono&family=VT323&display=swap');
+
+:root {
+  --Normal: #ECE8E1;
+  --Grass: #CEFFB4;
+  --Fire: #FF9B61;
+  --Water: #B0B0FF;
+  --Electric: #FFF8B0;
+  --Ice: #B0FFFF;
+  --Fighting: #BF6363;
+  --Poison: #AD71C9;
+  --Ground: #F8CD8D;
+  --Rock: #BF9A63;
+  --Flying: #B0E7FA;
+  --Psychic: #FAB0F1;
+  --Bug: #F1FAB0;
+  --Dragon: #A66BB6;
+  --Dark: #4E4E4E;
+  --Steel: #CED6D7;
+  --Fairy: #FFB4CB;
+  --Bird: #8DA19B;
+  --Ghost: #6C4E82;
+
+  --AFW: lavender;
+
+  --easeSec: 2s;
+}
+* {
+  box-sizing: border-box;
+  font-family: Poppins, "Nova Square", sans-serif;
+}
+body {
+  /* background: var(--Grass); */
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#Pokedex {
+width: 77rem;
+height: auto;
+max-height: 44rem;
+background-color: var(--AFW);
+border-radius: 8px;
+padding: 0.3rem;
+transition: var(--easeSec) ease-in-out;
+}
+
+#top {
+  height: 40%;
+  background: url('../Assets/pokeball.png');
+  background-repeat: no-repeat;
+  background-position: right;
+  /* background-size: cover; */
+}
+
+#top-bar {
+  display: flex;
+  justify-content: space-between;
+  color: black;
+  background: url('../Assets/AbilityNotater.png');
+  background-size: contain;
+  background-position: left;
+  background-repeat: no-repeat;
+  /* padding: 0 1.2rem; */
+}
+
+#Search {
+  color: black;
+  background: none;
+  border: none;
+  font-size: 1.2em;
+  font-weight: bold;
+  width: 60%;
+  margin-left: 1em;
+  color: white;
+}
+
+#Search:focus {
+  outline: none;
+}
+
+#Data {
+  display: flex;
+  height: 60%;
+  justify-content: space-between;
+  /* overflow-y: scroll; */
+}
+#Description {
+  width: 30%;
+}
+#PokemonList {
+  display: flex;
+  /* flex-wrap: wrap; */
+  overflow-x: scroll;
+  scrollbar-color: rgba(00,00,00,100) #00000000;
+
+  height: auto;
+  max-height: 60%;
+  width: 60%;
+}
+#ShortEffect {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.Pokemon {
+  min-width: 8em;
+  background: blue;
+  height: 90%;
+  border-radius: 10px;
+  color: white;
+  /* overflow: hidden; */
+  margin: 10px;
+  /* overflow-y: scroll;
+  scrollbar-color: rgba(00,00,00,00) #00000000; */
+}
+.Pokemon * {
+  display: block;
+  margin: auto;
+}
+.PokemonImage {
+  width: 100%;
+}
+.PokemonName {
+  /* width: 100%; */
+  font-size: auto;
+  text-align: center;
+  /* height: 1.5vw; */
+
+  /* overflow: hidden; */
+}
+
+.hidden {
+  text-decoration: underline;
+  font-style: italic;
+  font-weight: bold;
+  color: red;
+}

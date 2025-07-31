@@ -1,0 +1,109 @@
+<!--
+  Enzo Alexander
+  1/23/25
+  interactive Pokédex using Bubapedia
+  Alexander_Index.html
+ -->
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="author" content="Enzo Alexander">
+    <meta name="description" content="An interactive Pokédex using the official Bubapedia API | Abilities">
+    <meta name="keywords" content="Pokémon, Pokédex, JavaScript project, HTML Project, CSS Project, interactive, API">
+    <meta name="veiwport" content="width:device-width, initial-scale = 1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Pokédex | Abilities | Enzo Alexander</title>
+    <link rel="stylesheet" href="Css/Alexander_Styles.css">
+    <link rel="shortcut icon" href="Assets/pokeball.png">
+  </head>
+  <body style="Background: rgb(116,203,72); transition: var(--easeSec) ease-in-out;" id="pkbody">
+    <div id="Pokedex">
+      <div id="top">
+        <div id="top-bar">
+          <input type="text" id="Search" value="Stench">
+          <span id="number"> #0001</span>
+        </div>
+        <div id="Data">
+          <div id="Description">
+            <p id="FlavorText">This Pokémon's damaging moves have a 10% chance to make the target flinch with each hit if they do not already cause flinching as a secondary effect. This ability does not stack with a held item. Overworld: The wild encounter rate is halved while this Pokémon is first in the party.</p><br>
+            <p id="ShortEffect">Has a 10% chance of making target Pokémon flinch with each hit</p>
+          </div>
+          <!-- <div id="PokemonList">
+            <span class="Pokemon">
+              <img src="Assets/44.png" alt="" class="PokemonImage">
+              <span class="PokemonName">Gloom</span>
+            </span>
+          </div> -->
+          <div id="PokemonList">
+            <div class="Pokemon" style="background: rgb(116, 203, 58);">
+              <img class="PokemonImage" src="Assets/44.png" style="display: block;">
+              <span class="PokemonName hidden">Gloom</span>
+            </div>
+            <div class="Pokemon" style="background: rgb(164, 50, 158);">
+              <img class="PokemonImage" src="Assets/89.png" style="display: block;">
+              <span class="PokemonName">Muk</span>
+            </div>
+            <div class="Pokemon" style="background: rgb(164, 50, 158);">
+              <img class="PokemonImage" src="Assets/88.png" style="display: block;">
+              <span class="PokemonName">Grimer</span>
+            </div>
+            <div class="Pokemon" style="background: rgb(164, 50, 158);">
+              <img class="PokemonImage" src="Assets/434.png" style="display: block;">
+              <span class="PokemonName">Stunky</span>
+            </div>
+            <div class="Pokemon" style="background: rgb(164, 50, 158);">
+              <img class="PokemonImage" src="Assets/109.png" style="display: block;">
+              <span class="PokemonName hidden">Koffing</span>
+            </div>
+            <div class="Pokemon" style="background: rgb(164, 50, 158);">
+              <img class="PokemonImage" src="Assets/110.png" style="display: block;">
+              <span class="PokemonName hidden">Weezing</span>
+            </div>
+            <div class="Pokemon" style="background: rgb(164, 50, 158);">
+              <img class="PokemonImage" src="Assets/435.png" style="display: block;">
+              <span class="PokemonName">Skuntank</span>
+            </div>
+            <div class="Pokemon" style="background: rgb(164, 50, 158);">
+              <img class="PokemonImage" src="Assets/568.png" style="display: block;">
+              <span class="PokemonName">Trubbish</span>
+            </div>
+            <div class="Pokemon" style="background: rgb(164, 50, 158);">
+              <img class="PokemonImage" src="Assets/569.png" style="display: block;">
+              <span class="PokemonName">Garbodor</span>
+            </div>
+            <div class="Pokemon" style="background: rgb(164, 50, 158);">
+              <img class="PokemonImage" src="Assets/10207.png" style="display: block;">
+              <span class="PokemonName">Garbodor-gmax</span>
+            </div>
+          </div>
+        </div>
+
+
+        <!--
+          <div style="background: var(--AFW); width:100%; height:100%; border-radius: 8px; overflow-y: scroll; text-align:center;   scrollbar-color: rgb(116,203,72) #00000000; transition: var(--easeSec) ease-in-out; width:20%;" id="StFormsInner">
+            <p style="" id="scfHea"></p> <!-- NOTE: Put in Credits For MissingNo, This line here will need it's own ID so that You can replace it with "Credits, THX"--><!--
+
+
+
+            <h1 id="credHea" style="font-size:1.5em; color:rgb(104, 160, 144); font-weight:bolder; display:none;">Credits:</h1>
+              <p class="Credits pkmnFormz" style="display:none;">Original Code: Taylor Adami (My Teacher)</p>
+              <p class="Credits pkmnFormz" style="display:none;">Additions: Enzo Alexander (Me)</p>
+              <p class="Credits pkmnFormz" style="display:none;">Coding Resource 1: ChatGPT</p>
+              <p class="Credits pkmnFormz" style="display:none;">Coding Resource 2: Stack Overflow</p> <!--0--><!--
+              <p class="Credits pkmnFormz" style="display:none;">Coding Resource 3: PokéAPI</p>
+              <p class="Credits pkmnFormz" style="display:none;">A Special Thanks to my brother Mark Alexander, for introducing me to the issue of Vivillon and leading me down this cursed path.</p>
+              <p class="Credits pkmnFormz" style="display:none;">Thank You and Goodnight.</p>
+              <p class="Credits pkmnFormz" style="display:none;">"Bishaaan"</p>
+          </div> -->
+        <!-- </div> -->
+
+
+
+      </div>
+    </div>
+
+    <!-- ---------------------------------------------------------EXTERNAL JS------------------------------------------------------------------------------------ -->
+      <script src="Js/Script.js"></script>
+  </body>
+</html>

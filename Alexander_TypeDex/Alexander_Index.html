@@ -1,0 +1,172 @@
+<!--
+  Enzo Alexander
+  1/23/25
+  interactive Pokédex using Bubapedia
+  Alexander_Index.html
+ -->
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="author" content="Enzo Alexander">
+    <meta name="description" content="An interactive Pokédex using the official Poke API | Types">
+    <meta name="keywords" content="Pokémon, Pokédex, JavaScript project, HTML Project, CSS Project, interactive, API">
+    <meta name="veiwport" content="width:device-width, initial-scale = 1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Pokédex | Types | Enzo Alexander</title>
+    <link rel="stylesheet" href="Css/Alexander_Styles.css">
+    <link rel="shortcut icon" href="Assets/pokeball.png">
+  </head>
+  <body style="Background: rgb(236 232 225); transition: var(--easeSec) ease-in-out;" id="pkbody">
+    <div id="Pokedex">
+      <div id="top">
+        <div id="top-bar">
+          <input type="text" id="Search" value="Normal">
+          <span id="number"> #0001</span>
+        </div>
+        <div id="Data">
+          <div id="BattleData">
+            <div id="Dynamics">
+              <table style="color: var(--AFW);">
+                <thead>
+                  <th colspan="3" class="TypeHeaders">Offensive Properties</th>
+                </thead>
+                <tr>
+                  <td class="DynProp TypeHeaders">Super Effective (2x)</td>
+                  <td class="DynProp TypeHeaders">Not Very Effective (0.5x)</td>
+                  <td class="DynProp TypeHeaders">No Effect (0x)</td>
+                </tr>
+                <tr>
+                  <td id="SupEff" class="TypeLists">
+                    <span class="type" style="background: rgb(104, 160, 144);">None</span>
+                  </td>
+                  <td id="NoVeEff" class="TypeLists">
+                    <span class="type" style="background: rgb(182, 158, 049);">Rock</span>
+                    <span class="type" style="background: rgb(183, 185, 208);">Steel</span>
+                  </td>
+                  <td id="NoEff" class="TypeLists">
+                    <span class="type" style="background: rgb(112, 085, 155);">Ghost</span>
+                  </td>
+                </tr>
+                <thead>
+                  <th colspan="3" class="TypeHeaders">Defenseive Properties</th>
+                </thead>
+                <tr>
+                  <td class="DynProp TypeHeaders">Weak to (2x)</td>
+                  <td class="DynProp TypeHeaders">Resists (0.5x)</td>
+                  <td class="DynProp TypeHeaders">Immune to (0x)</td>
+                </tr>
+                <tr>
+                  <td id="WeaTo" class="TypeLists">
+                    <span class="type" style="background: rgb(193, 034, 057);">Fighting</span>
+                  </td>
+                  <td id="Resists" class="TypeLists">
+                    <span class="type" style="background: rgb(104, 160, 144);">None</span>
+                  </td>
+                  <td id="ImmTo" class="TypeLists">
+                    <span class="type" style="background: rgb(112, 085, 155);">Ghost</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="3" class="TypeHeaders">Neutral Interactions</td>
+                </tr>
+                <tr>
+                  <td colspan="3" class="TypeLists">
+                    <span class="type" style="background: rgb(100, 147, 235);">Water</span>
+                    <span class="type" style="background: rgb(116, 203, 072);">Grass</span>
+                    <span class="type" style="background: rgb(251, 085, 132);">Psychic</span>
+                    <span class="type" style="background: rgb(154, 214, 223);">Ice</span>
+                    <span class="type" style="background: rgb(117, 087, 076);">Dark</span>
+                    <span class="type" style="background: rgb(230, 158, 172);">Fairy</span>
+                    <span class="type" style="background: rgb(170, 166, 127);">Normal</span>
+                    <span class="type" style="background: rgb(168, 145, 236);">Flying</span>
+                    <span class="type" style="background: rgb(164, 062, 158);">Poison</span>
+                    <span class="type" style="background: rgb(222, 193, 107);">Ground</span>
+                    <span class="type" style="background: rgb(167, 183, 035);">Bug</span>
+                    <span class="type" style="background: rgb(245, 125, 049);">Fire</span>
+                    <span class="type" style="background: rgb(249, 207, 048);">Electric</span>
+                    <span class="type" style="background: rgb(112, 055, 255);">Dragon</span>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <br>
+            <div id="PokemonList">
+              <div class="Pokemon" style="background: rgb(168, 145, 236);">
+                <img class="PokemonImage" src="Assets/16.png" style="display: block;">
+                <span class="PokemonName">Pidgey</span>
+              </div>
+            </div>
+
+          </div>
+
+
+
+          <br>
+          <div id="Moves">
+            <table>
+              <thead>
+                <tr id="MoveListHeader" style="color: var(--AFW);">
+                  <th>Name</th>
+                  <th>Class</th>
+                  <th>Power</th>
+                  <th>PP</th>
+                  <th>Accuracy</th>
+                </tr>
+              </thead>
+              <tbody id="MoveList">
+                <tr class="Move" style="background: rgb(170, 166, 127);">
+                  <td class="MoveName">razor wind</td>
+                  <td class="MoveClassContainer">
+                    <img src="Assets/special.png" alt="special" class="MoveClass">
+                  </td>
+                  <td class="MovePower">80</td>
+                  <td class="MovePP">10</td>
+                  <td class="MoveAcc">100%</td>
+                </tr>
+                <tr class="Move" style="background: rgb(170, 166, 127);">
+                  <td class="MoveName">swords dance</td>
+                  <td class="MoveClassContainer">
+                    <img src="Assets/status.png" alt="status" class="MoveClass">
+                  </td>
+                  <td class="MovePower">N/A</td>
+                  <td class="MovePP">20</td>
+                  <td class="MoveAcc">N/A</td>
+                </tr>
+
+
+              </tbody>
+
+            </table>
+          </div>
+
+        </div>
+
+
+        <!--
+          <div style="background: var(--AFW); width:100%; height:100%; border-radius: 8px; overflow-y: scroll; text-align:center;   scrollbar-color: rgb(116,203,72) #00000000; transition: var(--easeSec) ease-in-out; width:20%;" id="StFormsInner">
+            <p style="" id="scfHea"></p> <!-- NOTE: Put in Credits For MissingNo, This line here will need it's own ID so that You can replace it with "Credits, THX"--><!--
+
+
+
+            <h1 id="credHea" style="font-size:1.5em; color:rgb(104, 160, 144); font-weight:bolder; display:none;">Credits:</h1>
+              <p class="Credits pkmnFormz" style="display:none;">Original Code: Taylor Adami (My Teacher)</p>
+              <p class="Credits pkmnFormz" style="display:none;">Additions: Enzo Alexander (Me)</p>
+              <p class="Credits pkmnFormz" style="display:none;">Coding Resource 1: ChatGPT</p>
+              <p class="Credits pkmnFormz" style="display:none;">Coding Resource 2: Stack Overflow</p> <!--0--><!--
+              <p class="Credits pkmnFormz" style="display:none;">Coding Resource 3: PokéAPI</p>
+              <p class="Credits pkmnFormz" style="display:none;">A Special Thanks to my brother Mark Alexander, for introducing me to the issue of Vivillon and leading me down this cursed path.</p>
+              <p class="Credits pkmnFormz" style="display:none;">Thank You and Goodnight.</p>
+              <p class="Credits pkmnFormz" style="display:none;">"Bishaaan"</p>
+          </div> -->
+        <!-- </div> -->
+
+
+
+      </div>
+    </div>
+
+    <!-- ---------------------------------------------------------EXTERNAL JS------------------------------------------------------------------------------------ -->
+      <script src="Js/Script.js"></script>
+  </body>
+</html>

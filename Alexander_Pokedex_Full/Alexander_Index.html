@@ -1,0 +1,1680 @@
+<!--
+  Enzo Alexander
+  1/23/25
+  interactive Pokédex using Bubapedia
+  Alexander_Index.html
+ -->
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="author" content="Enzo Alexander">
+    <meta name="description" content="An interactive Pokédex using the official Bubapedia API">
+    <meta name="keywords" content="Pokémon, Pokédex, JavaScript project, HTML Project, CSS Project, interactive, API">
+    <meta name="veiwport" content="width:device-width, initial-scale = 1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Pokédex | Enzo Alexander</title>
+    <link rel="stylesheet" href="Css/Alexander_Styles.css">
+    <link rel="shortcut icon" href="Assets/pokeball.png">
+  </head>
+  <body style="Background: rgb(173, 113, 201); transition: var(--easeSec) ease-in-out;" id="pkbody">
+    <div id="Pokedex">
+      <div id="top">
+        <div id="top-bar">
+          <input type="text" id="Search" value="Bulbasaur">
+          <span id="number"> #0001</span>
+        </div>
+        <div id="Poke-Image-Placeholder">
+          <img src="Assets/1.png" alt="Pokémon Image" id="pokemon-image" style="display:block;"">
+          <img src="Assets/1shiny.png" alt="Pokémon Image Shiny" id="pokemon-image-shiny" style="display:block;"">
+          <img src="Assets/1.png" alt="Pokémon Image" id="pokemon-image-F" style="display:none;">
+          <img src="Assets/1shiny.png" alt="Pokémon Image Shiny" id="pokemon-image-shiny-F" style="display:none;">
+        </div>
+      </div>
+      <div id="DataBoxBox">
+        <div id="DataBox">
+        <div class="" style="display:flex; flex-wrap:wrap; width: 20%;">
+          <div id="abilities" width="100%">
+            <div class="ability">
+              Overgrow
+            </div>
+            <div class="ability hidden">
+              Clorophyll
+          </div>
+        </div>
+          <div class="Mesurements" style="margin-left:1rem;">
+            <div class="" style="display:flex; align-content:center;">
+              <img src="Assets/Height.png" alt="Height" width="20rem" height="20rem"><span class="Calcs" id="height">&nbsp;0.7 m</span>&nbsp
+            </div>
+            <br>
+            <div class="" style="display:flex; align-content:center;">
+              <img src="Assets/weight.png" alt="Weight" width="20rem" height="20rem"><span class="Calcs" id="weight">&nbsp;6.9 lbs</span>&nbsp
+            </div>
+          </div>
+          </div>
+
+
+        <!-- <div id="Stat-forms" style="width: 22rem; height: 35rem; background-color: rgb(116,203,72); border-radius: 8px; padding: 0.3rem; margin-left:5rem; display:none;transition: var(--easeSec) ease-in-out;"> -->
+          <div style="background: var(--AFW); width:100%; height:100%; border-radius: 8px; overflow-y: scroll; text-align:center;   scrollbar-color: rgb(116,203,72) #00000000; transition: var(--easeSec) ease-in-out; width:20%;" id="StFormsInner">
+            <p style="" id="scfHea"></p> <!-- NOTE: Put in Credits For MissingNo, This line here will need it's own ID so that You can replace it with "Credits, THX"-->
+            <h1 id="credHea" style="font-size:1.5em; color:rgb(104, 160, 144); font-weight:bolder; display:none;">Credits:</h1>
+
+              <p class="AbomasnowFormz pkmnFormz" style="display:none;">Abomasnow</p> <!--0-->
+              <p class="AbomasnowFormz pkmnFormz" style="display:none;">Abomasnow Mega</p>
+
+              <p class="AbsolFormz pkmnFormz" style="display:none;">Absol</p> <!--0-->
+              <p class="AbsolFormz pkmnFormz" style="display:none;">Absol Mega</p>
+
+              <p class="AegislashFormz pkmnFormz" style="display:none;">Aegislash Blade</p>
+              <p class="AegislashFormz pkmnFormz" style="display:none;">Aegislash Shield</p> <!--0-->
+
+
+              <p class="AerodactylFormz pkmnFormz" style="display:none;">Aerodactyl</p> <!--0-->
+              <p class="AerodactylFormz pkmnFormz" style="display:none;">Aerodactyl Mega</p>
+
+              <p class="AggronFormz pkmnFormz" style="display:none;">Aggron Mega</p>
+              <p class="AggronFormz pkmnFormz" style="display:none;">Aggron</p> <!--0-->
+
+              <p class="AlakazamFormz pkmnFormz" style="display:none;">Alakazam Mega</p>
+              <p class="AlakazamFormz pkmnFormz" style="display:none;">Alakazam</p> <!--0-->
+
+              <p class="AlcremieFormz pkmnFormz" style="display:none;">Alcremie Gmax</p>
+              <p class="AlcremieFormz pkmnFormz" style="display:none;">Alcremie</p> <!--0-->
+
+              <p class="AltariaFormz pkmnFormz" style="display:none;">Altaria Mega</p>
+              <p class="AltariaFormz pkmnFormz" style="display:none;">Altaria</p> <!--0-->
+
+              <p class="AmpharosFormz pkmnFormz" style="display:none;">Ampharos Mega</p>
+              <p class="AmpharosFormz pkmnFormz" style="display:none;">Ampharos</p> <!--0-->
+
+              <p class="AppletunFormz pkmnFormz" style="display:none;">Appletun Gmax</p>
+              <p class="AppletunFormz pkmnFormz" style="display:none;">Appletun</p> <!--0-->
+
+              <p class="AraquanidFormz pkmnFormz" style="display:none;">Araquanid Totem</p>
+              <p class="AraquanidFormz pkmnFormz" style="display:none;">Araquanid</p> <!--0-->
+
+              <p class="ArcanineFormz pkmnFormz" style="display:none;">Arcanine Hisui</p>
+              <p class="ArcanineFormz pkmnFormz" style="display:none;">Arcanine</p> <!--0-->
+
+              <p class="ArticunoFormz pkmnFormz" style="display:none;">Articuno Galar</p>
+              <p class="ArticunoFormz pkmnFormz" style="display:none;">Articuno</p> <!--0-->
+
+              <p class="AudinoFormz pkmnFormz" style="display:none;">Audino Mega</p>
+              <p class="AudinoFormz pkmnFormz" style="display:none;">Audino</p> <!--0-->
+
+              <p class="AvaluggFormz pkmnFormz" style="display:none;">Avalugg Hisui</p>
+              <p class="AvaluggFormz pkmnFormz" style="display:none;">Avalugg</p> <!--0-->
+
+              <p class="BanetteFormz pkmnFormz" style="display:none;">Banette Mega</p>
+              <p class="BanetteFormz pkmnFormz" style="display:none;">Banette</p> <!--0-->
+
+              <p class="BasculegionFormz pkmnFormz" style="display:none;">Basculegion Female</p>
+              <p class="BasculegionFormz pkmnFormz" style="display:none;">Basculegion Male</p> <!--0-->
+
+              <p class="BasculinFormz pkmnFormz" style="display:none;">Basculin Blue Striped</p>
+              <p class="BasculinFormz pkmnFormz" style="display:none;">Basculin Red Striped</p> <!--0-->
+              <p class="BasculinFormz pkmnFormz" style="display:none;">Basculin White Striped</p>
+
+              <p class="BeedrillFormz pkmnFormz" style="display:none;">Beedrill Mega</p>
+              <p class="BeedrillFormz pkmnFormz" style="display:none;">Beedrill</p> <!--0-->
+
+              <p class="BlastoiseFormz pkmnFormz" style="display:none;">Blastoise Gmax</p>
+              <p class="BlastoiseFormz pkmnFormz" style="display:none;">Blastoise Mega</p>
+              <p class="BlastoiseFormz pkmnFormz" style="display:none;">Blastoise</p> <!--0-->
+
+              <p class="BlazikenFormz pkmnFormz" style="display:none;">Blaziken Mega</p>
+              <p class="BlazikenFormz pkmnFormz" style="display:none;">Blaziken</p> <!--0-->
+
+              <p class="BraviaryFormz pkmnFormz" style="display:none;">Braviary Hisui</p>
+              <p class="BraviaryFormz pkmnFormz" style="display:none;">Braviary</p> <!--0-->
+
+              <p class="ButterfreeFormz pkmnFormz" style="display:none;">Butterfree Gmax</p>
+              <p class="ButterfreeFormz pkmnFormz" style="display:none;">Butterfree</p> <!--0-->
+
+              <p class="CalyrexFormz pkmnFormz" style="display:none;">Calyrex Ice</p>
+              <p class="CalyrexFormz pkmnFormz" style="display:none;">Calyrex Shadow</p>
+              <p class="CalyrexFormz pkmnFormz" style="display:none;">Calyrex</p> <!--0-->
+
+              <p class="CameruptFormz pkmnFormz" style="display:none;">Camerupt Mega</p>
+              <p class="CameruptFormz pkmnFormz" style="display:none;">Camerupt</p> <!--0-->
+
+              <p class="CastformFormz pkmnFormz" style="display:none;">Castform Rainy</p>
+              <p class="CastformFormz pkmnFormz" style="display:none;">Castform Snowy</p>
+              <p class="CastformFormz pkmnFormz" style="display:none;">Castform Sunny</p>
+              <p class="CastformFormz pkmnFormz" style="display:none;">Castform</p> <!--0-->
+
+              <p class="CentiskorchFormz pkmnFormz" style="display:none;">Centiskorch Gmax</p>
+              <p class="CentiskorchFormz pkmnFormz" style="display:none;">Centiskorch</p> <!--0-->
+
+              <p class="CharizardFormz pkmnFormz" style="display:none;">Charizard Gmax</p>
+              <p class="CharizardFormz pkmnFormz" style="display:none;">Charizard Mega X</p>
+              <p class="CharizardFormz pkmnFormz" style="display:none;">Charizard Mega Y</p>
+              <p class="CharizardFormz pkmnFormz" style="display:none;">Charizard</p> <!--0-->
+
+              <p class="CinderaceFormz pkmnFormz" style="display:none;">Cinderace Gmax</p>
+              <p class="CinderaceFormz pkmnFormz" style="display:none;">Cinderace</p> <!--0-->
+
+              <p class="CoalossalFormz pkmnFormz" style="display:none;">Coalossal Gmax</p>
+              <p class="CoalossalFormz pkmnFormz" style="display:none;">Coalossal</p> <!--0-->
+
+              <p class="CopperajahFormz pkmnFormz" style="display:none;">Copperajah Gmax</p>
+              <p class="CopperajahFormz pkmnFormz" style="display:none;">Copperajah</p> <!--0-->
+
+              <p class="CorsolaFormz pkmnFormz" style="display:none;">Corsola Galar</p>
+              <p class="CorsolaFormz pkmnFormz" style="display:none;">Corsola</p> <!--0-->
+
+              <p class="CorviknightFormz pkmnFormz" style="display:none;">Corviknight Gmax</p>
+              <p class="CorviknightFormz pkmnFormz" style="display:none;">Corviknight</p> <!--0-->
+
+              <p class="CramorantFormz pkmnFormz" style="display:none;">Cramorant Gorging</p>
+              <p class="CramorantFormz pkmnFormz" style="display:none;">Cramorant Gulping</p>
+              <p class="CramorantFormz pkmnFormz" style="display:none;">Cramorant</p> <!--0-->
+
+              <p class="DarmanitanFormz pkmnFormz" style="display:none;">Darmanitan Galar Standard</p>
+              <p class="DarmanitanFormz pkmnFormz" style="display:none;">Darmanitan Galar Zen</p>
+              <p class="DarmanitanFormz pkmnFormz" style="display:none;">Darmanitan Standard</p> <!--0-->
+              <p class="DarmanitanFormz pkmnFormz" style="display:none;">Darmanitan Zen</p>
+
+              <p class="DarumakaFormz pkmnFormz" style="display:none;">Darumaka Galar</p>
+              <p class="DarumakaFormz pkmnFormz" style="display:none;">Darumaka</p> <!--0-->
+
+              <p class="DecidueyeFormz pkmnFormz" style="display:none;">Decidueye Hisui</p>
+              <p class="DecidueyeFormz pkmnFormz" style="display:none;">Decidueye</p> <!--0-->
+
+              <p class="DeoxysFormz pkmnFormz" style="display:none;">Deoxys Attack</p>
+              <p class="DeoxysFormz pkmnFormz" style="display:none;">Deoxys Defense</p>
+              <p class="DeoxysFormz pkmnFormz" style="display:none;">Deoxys Normal</p> <!--0-->
+              <p class="DeoxysFormz pkmnFormz" style="display:none;">Deoxys Speed</p>
+
+              <p class="DialgaFormz pkmnFormz" style="display:none;">Dialga Origin</p>
+              <p class="DialgaFormz pkmnFormz" style="display:none;">Dialga</p><!--0-->
+
+              <p class="DiancieFormz pkmnFormz" style="display:none;">Diancie Mega</p>
+              <p class="DiancieFormz pkmnFormz" style="display:none;">Diancie</p> <!--0-->
+
+              <p class="DiglettFormz pkmnFormz" style="display:none;">Diglett Alola</p>
+              <p class="DiglettFormz pkmnFormz" style="display:none;">Diglett</p> <!--0-->
+
+              <p class="DrednawFormz pkmnFormz" style="display:none;">Drednaw Gmax</p>
+              <p class="DrednawFormz pkmnFormz" style="display:none;">Drednaw</p> <!--0-->
+
+              <p class="DudunsparceFormz pkmnFormz" style="display:none;">Dudunsparce Three Segment</p>
+              <p class="DudunsparceFormz pkmnFormz" style="display:none;">Dudunsparce Two Segment</p> <!--0-->
+
+              <p class="DugtrioFormz pkmnFormz" style="display:none;">Dugtrio Alola</p>
+              <p class="DugtrioFormz pkmnFormz" style="display:none;">Dugtrio</p> <!--0-->
+
+              <p class="DuraludonFormz pkmnFormz" style="display:none;">Duraludon Gmax</p>
+              <p class="DuraludonFormz pkmnFormz" style="display:none;">Duraludon</p> <!--0-->
+
+              <p class="EeveeFormz pkmnFormz" style="display:none;">Eevee Gmax</p>
+              <p class="EeveeFormz pkmnFormz" style="display:none;">Eevee Starter</p>
+              <p class="EeveeFormz pkmnFormz" style="display:none;">Eevee</p> <!--0-->
+
+              <p class="EiscueFormz pkmnFormz" style="display:none;">Eiscue Ice</p> <!--0-->
+              <p class="EiscueFormz pkmnFormz" style="display:none;">Eiscue Noice</p>
+
+              <p class="ElectrodeFormz pkmnFormz" style="display:none;">Electrode Hisui</p>
+              <p class="ElectrodeFormz pkmnFormz" style="display:none;">Electrode</p> <!--0-->
+
+              <p class="EnamorusFormz pkmnFormz" style="display:none;">Enamorus Incarnate</p> <!--0-->
+              <p class="EnamorusFormz pkmnFormz" style="display:none;">Enamorus Therian</p>
+
+              <p class="EternatusFormz pkmnFormz" style="display:none;">Eternatus Eternamax</p>
+              <p class="EternatusFormz pkmnFormz" style="display:none;">Eternatus</p> <!--0-->
+
+              <p class="ExeggutorFormz pkmnFormz" style="display:none;">Exeggutor Alola</p>
+              <p class="ExeggutorFormz pkmnFormz" style="display:none;">Exeggutor</p> <!--0-->
+
+              <p class="FarfetchdFormz pkmnFormz" style="display:none;">Farfetch'd Galar</p>
+              <p class="FarfetchdFormz pkmnFormz" style="display:none;">Farfetch'd</p> <!--0-->
+
+              <p class="FlappleFormz pkmnFormz" style="display:none;">Flapple Gmax</p>
+              <p class="FlappleFormz pkmnFormz" style="display:none;">Flapple</p> <!--0-->
+
+              <p class="FloetteFormz pkmnFormz" style="display:none;">Floette Eternal</p>
+              <p class="FloetteFormz pkmnFormz" style="display:none;">Floette</p> <!--0-->
+
+              <p class="GalladeFormz pkmnFormz" style="display:none;">Gallade Mega</p>
+              <p class="GalladeFormz pkmnFormz" style="display:none;">Gallade</p> <!--0-->
+
+              <p class="GarbodorFormz pkmnFormz" style="display:none;">Garbodor Gmax</p>
+              <p class="GarbodorFormz pkmnFormz" style="display:none;">Garbodor</p> <!--0-->
+
+              <p class="GarchompFormz pkmnFormz" style="display:none;">Garchomp Mega</p>
+              <p class="GarchompFormz pkmnFormz" style="display:none;">Garchomp</p> <!--0-->
+
+              <p class="GardevoirFormz pkmnFormz" style="display:none;">Gardevoir Mega</p>
+              <p class="GardevoirFormz pkmnFormz" style="display:none;">Gardevoir</p> <!--0-->
+
+              <p class="GengarFormz pkmnFormz" style="display:none;">Gengar Gmax</p>
+              <p class="GengarFormz pkmnFormz" style="display:none;">Gengar Mega</p>
+              <p class="GengarFormz pkmnFormz" style="display:none;">Gengar</p> <!--0-->
+
+              <p class="GeodudeFormz pkmnFormz" style="display:none;">Geodude Alola</p>
+              <p class="GeodudeFormz pkmnFormz" style="display:none;">Geodude</p> <!--0-->
+
+              <p class="GimmighoulFormz pkmnFormz" style="display:none;">Gimmighoul Roaming</p>
+              <p class="GimmighoulFormz pkmnFormz" style="display:none;">Gimmighoul</p> <!--0-->
+
+              <p class="GiratinaFormz pkmnFormz" style="display:none;">Giratina Altered</p> <!--0-->
+              <p class="GiratinaFormz pkmnFormz" style="display:none;">Giratina Origin</p>
+
+              <p class="GlalieFormz pkmnFormz" style="display:none;">Glalie Mega</p>
+              <p class="GlalieFormz pkmnFormz" style="display:none;">Glalie</p> <!--0-->
+
+              <p class="GolemFormz pkmnFormz" style="display:none;">Golem Alola</p>
+              <p class="GolemFormz pkmnFormz" style="display:none;">Golem</p> <!--0-->
+
+              <p class="GoodraFormz pkmnFormz" style="display:none;">Goodra Hisui</p>
+              <p class="GoodraFormz pkmnFormz" style="display:none;">Goodra</p> <!--0-->
+
+              <p class="GourgeistFormz pkmnFormz" style="display:none;">Gourgeist Average</p> <!--0-->
+              <p class="GourgeistFormz pkmnFormz" style="display:none;">Gourgeist Large</p>
+              <p class="GourgeistFormz pkmnFormz" style="display:none;">Gourgeist Small</p>
+              <p class="GourgeistFormz pkmnFormz" style="display:none;">Gourgeist Super</p>
+
+              <p class="GravelerFormz pkmnFormz" style="display:none;">Graveler Alola</p>
+              <p class="GravelerFormz pkmnFormz" style="display:none;">Graveler</p> <!--0-->
+
+              <p class="GreninjaFormz pkmnFormz" style="display:none;">Greninja Ash</p>
+              <p class="GreninjaFormz pkmnFormz" style="display:none;">Greninja Battle Bond</p>
+              <p class="GreninjaFormz pkmnFormz" style="display:none;">Greninja</p> <!--0-->
+
+              <p class="GrimerFormz pkmnFormz" style="display:none;">Grimer Alola</p>
+              <p class="GrimerFormz pkmnFormz" style="display:none;">Grimer</p> <!--0-->
+
+              <p class="GrimmsnarlFormz pkmnFormz" style="display:none;">Grimmsnarl Gmax</p>
+              <p class="GrimmsnarlFormz pkmnFormz" style="display:none;">Grimmsnarl</p> <!--0-->
+
+              <p class="GroudonFormz pkmnFormz" style="display:none;">Groudon Primal</p>
+              <p class="GroudonFormz pkmnFormz" style="display:none;">Groudon</p> <!--0-->
+
+              <p class="GrowlitheFormz pkmnFormz" style="display:none;">Growlithe Hisui</p>
+              <p class="GrowlitheFormz pkmnFormz" style="display:none;">Growlithe</p> <!--0-->
+
+              <p class="GumshoosFormz pkmnFormz" style="display:none;">Gumshoos Totem</p>
+              <p class="GumshoosFormz pkmnFormz" style="display:none;">Gumshoos</p> <!--0-->
+
+              <p class="GyaradosFormz pkmnFormz" style="display:none;">Gyarados Mega</p>
+              <p class="GyaradosFormz pkmnFormz" style="display:none;">Gyarados</p> <!--0-->
+
+              <p class="HattereneFormz pkmnFormz" style="display:none;">Hatterene Gmax</p>
+              <p class="HattereneFormz pkmnFormz" style="display:none;">Hatterene</p> <!--0-->
+
+              <p class="HeracrossFormz pkmnFormz" style="display:none;">Heracross Mega</p>
+              <p class="HeracrossFormz pkmnFormz" style="display:none;">Heracross</p> <!--0-->
+
+              <p class="HoopaFormz pkmnFormz" style="display:none;">Hoopa Unbound</p>
+              <p class="HoopaFormz pkmnFormz" style="display:none;">Hoopa</p> <!--0-->
+
+              <p class="HoundoomFormz pkmnFormz" style="display:none;">Houndoom Mega</p>
+              <p class="HoundoomFormz pkmnFormz" style="display:none;">Houndoom</p> <!--0-->
+
+              <p class="IndeedeeFormz pkmnFormz" style="display:none;">Indeedee Female</p>
+              <p class="IndeedeeFormz pkmnFormz" style="display:none;">Indeedee Male</p> <!--0-->
+
+              <p class="InteleonFormz pkmnFormz" style="display:none;">Inteleon Gmax</p>
+              <p class="InteleonFormz pkmnFormz" style="display:none;">Inteleon</p> <!--0-->
+
+              <p class="KangaskhanFormz pkmnFormz" style="display:none;">Kangaskhan Mega</p>
+              <p class="KangaskhanFormz pkmnFormz" style="display:none;">Kangaskhan</p> <!--0-->
+
+              <p class="KeldeoFormz pkmnFormz" style="display:none;">Keldeo Ordinary</p> <!--0-->
+              <p class="KeldeoFormz pkmnFormz" style="display:none;">Keldeo Resolute</p>
+
+              <p class="KinglerFormz pkmnFormz" style="display:none;">Kingler Gmax</p>
+              <p class="KinglerFormz pkmnFormz" style="display:none;">Kingler</p> <!--0-->
+
+              <p class="KommooFormz pkmnFormz" style="display:none;">Kommo-o Totem</p>
+              <p class="KommooFormz pkmnFormz" style="display:none;">Kommo-o</p> <!--0-->
+
+              <p class="KyogreFormz pkmnFormz" style="display:none;">Kyogre Primal</p>
+              <p class="KyogreFormz pkmnFormz" style="display:none;">Kyogre</p> <!--0-->
+
+              <p class="KyuremFormz pkmnFormz" style="display:none;">Kyurem Black</p>
+              <p class="KyuremFormz pkmnFormz" style="display:none;">Kyurem White</p>
+              <p class="KyuremFormz pkmnFormz" style="display:none;">Kyurem</p> <!--0-->
+
+              <p class="LandorusFormz pkmnFormz" style="display:none;">Landorus Incarnate</p> <!--0-->
+              <p class="LandorusFormz pkmnFormz" style="display:none;">Landorus Therian</p>
+
+              <p class="LaprasFormz pkmnFormz" style="display:none;">Lapras Gmax</p>
+              <p class="LaprasFormz pkmnFormz" style="display:none;">Lapras</p> <!--0-->
+
+              <p class="LatiasFormz pkmnFormz" style="display:none;">Latias Mega</p>
+              <p class="LatiasFormz pkmnFormz" style="display:none;">Latias</p> <!--0-->
+
+              <p class="LatiosFormz pkmnFormz" style="display:none;">Latios Mega</p>
+              <p class="LatiosFormz pkmnFormz" style="display:none;">Latios</p> <!--0-->
+
+              <p class="LilligantFormz pkmnFormz" style="display:none;">Lilligant Hisui</p>
+              <p class="LilligantFormz pkmnFormz" style="display:none;">Lilligant</p> <!--0-->
+
+              <p class="LinooneFormz pkmnFormz" style="display:none;">Linoone Galar</p>
+              <p class="LinooneFormz pkmnFormz" style="display:none;">Linoone</p> <!--0-->
+
+              <p class="LopunnyFormz pkmnFormz" style="display:none;">Lopunny Mega</p>
+              <p class="LopunnyFormz pkmnFormz" style="display:none;">Lopunny</p> <!--0-->
+
+              <p class="LucarioFormz pkmnFormz" style="display:none;">Lucario Mega</p>
+              <p class="LucarioFormz pkmnFormz" style="display:none;">Lucario</p> <!--0-->
+
+              <p class="LycanrocFormz pkmnFormz" style="display:none;">Lycanroc Dusk</p>
+              <p class="LycanrocFormz pkmnFormz" style="display:none;">Lycanroc Midday</p> <!--0-->
+              <p class="LycanrocFormz pkmnFormz" style="display:none;">Lycanroc Midnight</p>
+
+              <p class="MachampFormz pkmnFormz" style="display:none;">Machamp Gmax</p>
+              <p class="MachampFormz pkmnFormz" style="display:none;">Machamp</p> <!--0-->
+
+              <p class="MagearnaFormz pkmnFormz" style="display:none;">Magearna Original</p>
+              <p class="MagearnaFormz pkmnFormz" style="display:none;">Magearna</p> <!--0-->
+
+              <p class="ManectricFormz pkmnFormz" style="display:none;">Manectric Mega</p>
+              <p class="ManectricFormz pkmnFormz" style="display:none;">Manectric</p> <!--0-->
+
+              <p class="MarowakFormz pkmnFormz" style="display:none;">Marowak Alola</p>
+              <p class="MarowakFormz pkmnFormz" style="display:none;">Marowak Totem</p>
+              <p class="MarowakFormz pkmnFormz" style="display:none;">Marowak</p> <!--0-->
+
+              <p class="MausholdFormz pkmnFormz" style="display:none;">Maushold Family of Four</p> <!--0-->
+              <p class="MausholdFormz pkmnFormz" style="display:none;">Maushold Family of Three</p>
+
+              <p class="MawileFormz pkmnFormz" style="display:none;">Mawile Mega</p>
+              <p class="MawileFormz pkmnFormz" style="display:none;">Mawile</p> <!--0-->
+
+              <p class="MedichamFormz pkmnFormz" style="display:none;">Medicham Mega</p>
+              <p class="MedichamFormz pkmnFormz" style="display:none;">Medicham</p> <!--0-->
+
+              <p class="MeloettaFormz pkmnFormz" style="display:none;">Meloetta Aria</p> <!--0-->
+              <p class="MeloettaFormz pkmnFormz" style="display:none;">Meloetta Pirouette</p>
+
+              <p class="MelmetalFormz pkmnFormz" style="display:none;">Melmetal Gmax</p>
+              <p class="MelmetalFormz pkmnFormz" style="display:none;">Melmetal</p> <!--0-->
+
+              <p class="MeowsticFormz pkmnFormz" style="display:none;">Meowstic Female</p>
+              <p class="MeowsticFormz pkmnFormz" style="display:none;">Meowstic Male</p> <!--0-->
+
+              <p class="MeowthFormz pkmnFormz" style="display:none;">Meowth Alola</p>
+              <p class="MeowthFormz pkmnFormz" style="display:none;">Meowth Galar</p>
+              <p class="MeowthFormz pkmnFormz" style="display:none;">Meowth Gmax</p>
+              <p class="MeowthFormz pkmnFormz" style="display:none;">Meowth</p> <!--0-->
+
+              <p class="MetagrossFormz pkmnFormz" style="display:none;">Metagross Mega</p>
+              <p class="MetagrossFormz pkmnFormz" style="display:none;">Metagross</p> <!--0-->
+
+              <p class="MewtwoFormz pkmnFormz" style="display:none;">Mewtwo Mega X</p>
+              <p class="MewtwoFormz pkmnFormz" style="display:none;">Mewtwo Mega Y</p>
+              <p class="MewtwoFormz pkmnFormz" style="display:none;">Mewtwo</p> <!--0-->
+
+              <p class="MimikyuFormz pkmnFormz" style="display:none;">Mimikyu Busted</p>
+              <p class="MimikyuFormz pkmnFormz" style="display:none;">Mimikyu Disguised</p> <!--0-->
+              <p class="MimikyuFormz pkmnFormz" style="display:none;">Mimikyu Totem Busted</p>
+              <p class="MimikyuFormz pkmnFormz" style="display:none;">Mimikyu Totem Disguised</p>
+
+              <p class="MiniorFormz pkmnFormz" style="display:none;">Minior Blue Meteor</p>
+              <p class="MiniorFormz pkmnFormz" style="display:none;">Minior Blue</p>
+              <p class="MiniorFormz pkmnFormz" style="display:none;">Minior Green Meteor</p>
+              <p class="MiniorFormz pkmnFormz" style="display:none;">Minior Green</p>
+              <p class="MiniorFormz pkmnFormz" style="display:none;">Minior Indigo Meteor</p>
+              <p class="MiniorFormz pkmnFormz" style="display:none;">Minior Indigo</p>
+              <p class="MiniorFormz pkmnFormz" style="display:none;">Minior Orange Meteor</p>
+              <p class="MiniorFormz pkmnFormz" style="display:none;">Minior Orange</p>
+              <p class="MiniorFormz pkmnFormz" style="display:none;">Minior Red Meteor</p> <!--0-->
+              <p class="MiniorFormz pkmnFormz" style="display:none;">Minior Red</p>
+              <p class="MiniorFormz pkmnFormz" style="display:none;">Minior Violet Meteor</p>
+              <p class="MiniorFormz pkmnFormz" style="display:none;">Minior Violet</p>
+              <p class="MiniorFormz pkmnFormz" style="display:none;">Minior Yellow Meteor</p>
+              <p class="MiniorFormz pkmnFormz" style="display:none;">Minior Yellow</p>
+
+              <p class="MoltresFormz pkmnFormz" style="display:none;">Moltres Galar</p>
+              <p class="MoltresFormz pkmnFormz" style="display:none;">Moltres</p> <!--0-->
+
+              <p class="MorpekoFormz pkmnFormz" style="display:none;">Morpeko Full Belly</p> <!--0-->
+              <p class="MorpekoFormz pkmnFormz" style="display:none;">Morpeko Hangry</p>
+
+              <p class="Mr-mimeFormz pkmnFormz" style="display:none;">Mr. Mime Galar</p>
+              <p class="Mr-mimeFormz pkmnFormz" style="display:none;">Mr. Mime</p> <!--0-->
+
+              <p class="MukFormz pkmnFormz" style="display:none;">Muk Alola</p>
+              <p class="MukFormz pkmnFormz" style="display:none;">Muk</p> <!--0-->
+
+              <p class="NecrozmaFormz pkmnFormz" style="display:none;">Necrozma Dawn</p>
+              <p class="NecrozmaFormz pkmnFormz" style="display:none;">Necrozma Dusk</p>
+              <p class="NecrozmaFormz pkmnFormz" style="display:none;">Necrozma Ultra</p>
+              <p class="NecrozmaFormz pkmnFormz" style="display:none;">Necrozma</p> <!--0-->
+
+              <p class="NinetalesFormz pkmnFormz" style="display:none;">Ninetales Alola</p>
+              <p class="NinetalesFormz pkmnFormz" style="display:none;">Ninetales</p> <!--0-->
+
+              <p class="OgerponFormz pkmnFormz" style="display:none;">Ogerpon Cornerstone Mask</p>
+              <p class="OgerponFormz pkmnFormz" style="display:none;">Ogerpon Hearthflame Mask</p>
+              <p class="OgerponFormz pkmnFormz" style="display:none;">Ogerpon Wellspring Mask</p>
+              <p class="OgerponFormz pkmnFormz" style="display:none;">Ogerpon</p> <!--0-->
+
+              <p class="OinkologneFormz pkmnFormz" style="display:none;">Oinkologne Female</p>
+              <p class="OinkologneFormz pkmnFormz" style="display:none;">Oinkologne Male</p> <!--0-->
+
+              <p class="OrbeetleFormz pkmnFormz" style="display:none;">Orbeetle Gmax</p>
+              <p class="OrbeetleFormz pkmnFormz" style="display:none;">Orbeetle</p> <!--0-->
+
+              <p class="OricorioFormz pkmnFormz" style="display:none;">Oricorio Baile</p> <!--0-->
+              <p class="OricorioFormz pkmnFormz" style="display:none;">Oricorio Pa'u</p>
+              <p class="OricorioFormz pkmnFormz" style="display:none;">Oricorio Pom Pom</p>
+              <p class="OricorioFormz pkmnFormz" style="display:none;">Oricorio Sensu</p>
+
+              <p class="PalafinFormz pkmnFormz" style="display:none;">Palafin Hero</p>
+              <p class="PalafinFormz pkmnFormz" style="display:none;">Palafin Zero</p> <!--0-->
+
+              <p class="PalkiaFormz pkmnFormz" style="display:none;">Palkia Origin</p>
+              <p class="PalkiaFormz pkmnFormz" style="display:none;">Palkia</p> <!--0-->
+
+              <p class="PersianFormz pkmnFormz" style="display:none;">Persian Alola</p>
+              <p class="PersianFormz pkmnFormz" style="display:none;">Persian</p> <!--0-->
+
+              <p class="PidgeotFormz pkmnFormz" style="display:none;">Pidgeot Mega</p>
+              <p class="PidgeotFormz pkmnFormz" style="display:none;">Pidgeot</p> <!--0-->
+
+              <p class="PikachuFormz pkmnFormz" style="display:none;">Pikachu Alola Cap</p>
+              <p class="PikachuFormz pkmnFormz" style="display:none;">Pikachu Belle</p>
+              <p class="PikachuFormz pkmnFormz" style="display:none;">Pikachu Cosplay</p>
+              <p class="PikachuFormz pkmnFormz" style="display:none;">Pikachu Gmax</p>
+              <p class="PikachuFormz pkmnFormz" style="display:none;">Pikachu Hoenn Cap</p>
+              <p class="PikachuFormz pkmnFormz" style="display:none;">Pikachu Kalos Cap</p>
+              <p class="PikachuFormz pkmnFormz" style="display:none;">Pikachu Libre</p>
+              <p class="PikachuFormz pkmnFormz" style="display:none;">Pikachu Original Cap</p>
+              <p class="PikachuFormz pkmnFormz" style="display:none;">Pikachu Partner Cap</p>
+              <p class="PikachuFormz pkmnFormz" style="display:none;">Pikachu Phd</p>
+              <p class="PikachuFormz pkmnFormz" style="display:none;">Pikachu Pop Star</p>
+              <p class="PikachuFormz pkmnFormz" style="display:none;">Pikachu Rock Star</p>
+              <p class="PikachuFormz pkmnFormz" style="display:none;">Pikachu Sinnoh Cap</p>
+              <p class="PikachuFormz pkmnFormz" style="display:none;">Pikachu Starter</p>
+              <p class="PikachuFormz pkmnFormz" style="display:none;">Pikachu Unova Cap</p>
+              <p class="PikachuFormz pkmnFormz" style="display:none;">Pikachu World Cap</p>
+              <p class="PikachuFormz pkmnFormz" style="display:none;">Pikachu</p> <!--0-->
+
+              <p class="PinsirFormz pkmnFormz" style="display:none;">pinsir Mega</p>
+              <p class="PinsirFormz pkmnFormz" style="display:none;">pinsir</p> <!--0-->
+
+              <p class="PonytaFormz pkmnFormz" style="display:none;">Ponyta Galar</p>
+              <p class="PonytaFormz pkmnFormz" style="display:none;">Ponyta</p> <!--0-->
+
+              <p class="PumpkabooFormz pkmnFormz" style="display:none;">Pumpkaboo Average</p> <!--0-->
+              <p class="PumpkabooFormz pkmnFormz" style="display:none;">Pumpkaboo Large</p>
+              <p class="PumpkabooFormz pkmnFormz" style="display:none;">Pumpkaboo Small</p>
+              <p class="PumpkabooFormz pkmnFormz" style="display:none;">Pumpkaboo Super</p>
+
+              <p class="QwilfishFormz pkmnFormz" style="display:none;">Qwilfish Hisui</p>
+              <p class="QwilfishFormz pkmnFormz" style="display:none;">Qwilfish</p> <!--0-->
+
+              <p class="RaichuFormz pkmnFormz" style="display:none;">Raichu Alola</p>
+              <p class="RaichuFormz pkmnFormz" style="display:none;">Raichu</p> <!--0-->
+
+              <p class="RapidashFormz pkmnFormz" style="display:none;">Rapidash Galar</p>
+              <p class="RapidashFormz pkmnFormz" style="display:none;">Rapidash</p> <!--0-->
+
+              <p class="RaticateFormz pkmnFormz" style="display:none;">Raticate Alola</p>
+              <p class="RaticateFormz pkmnFormz" style="display:none;">Raticate Totem Alola</p>
+              <p class="RaticateFormz pkmnFormz" style="display:none;">Raticate</p> <!--0-->
+
+              <p class="RattataFormz pkmnFormz" style="display:none;">Rattata Alola</p>
+              <p class="RattataFormz pkmnFormz" style="display:none;">Rattata</p> <!--0-->
+
+              <p class="RayquazaFormz pkmnFormz" style="display:none;">Rayquaza Mega</p>
+              <p class="RayquazaFormz pkmnFormz" style="display:none;">Rayquaza</p> <!--0-->
+
+              <p class="RibombeeFormz pkmnFormz" style="display:none;">Ribombee Totem</p>
+              <p class="RibombeeFormz pkmnFormz" style="display:none;">Ribombee</p> <!--0-->
+
+              <p class="RillaboomFormz pkmnFormz" style="display:none;">Rillaboom Gmax</p>
+              <p class="RillaboomFormz pkmnFormz" style="display:none;">Rillaboom</p> <!--0-->
+
+              <p class="RockruffFormz pkmnFormz" style="display:none;">Rockruff Own Tempo</p>
+              <p class="RockruffFormz pkmnFormz" style="display:none;">Rockruff</p> <!--0-->
+
+              <p class="RotomFormz pkmnFormz" style="display:none;">Rotom Fan</p>
+              <p class="RotomFormz pkmnFormz" style="display:none;">Rotom Frost</p>
+              <p class="RotomFormz pkmnFormz" style="display:none;">Rotom Heat</p>
+              <p class="RotomFormz pkmnFormz" style="display:none;">Rotom Mow</p>
+              <p class="RotomFormz pkmnFormz" style="display:none;">Rotom Wash</p>
+              <p class="RotomFormz pkmnFormz" style="display:none;">Rotom</p> <!--0-->
+
+              <p class="SableyeFormz pkmnFormz" style="display:none;">Sableye Mega</p>
+              <p class="SableyeFormz pkmnFormz" style="display:none;">Sableye</p> <!--0-->
+
+              <p class="SalamenceFormz pkmnFormz" style="display:none;">Salamence Mega</p>
+              <p class="SalamenceFormz pkmnFormz" style="display:none;">Salamence</p> <!--0-->
+
+              <p class="SamurottFormz pkmnFormz" style="display:none;">Samurott Hisui</p>
+              <p class="SamurottFormz pkmnFormz" style="display:none;">Samurott</p> <!--0-->
+
+              <p class="SandacondaFormz pkmnFormz" style="display:none;">Sandaconda Gmax</p>
+              <p class="SandacondaFormz pkmnFormz" style="display:none;">Sandaconda</p> <!--0-->
+
+              <p class="SandshrewFormz pkmnFormz" style="display:none;">Sandshrew Alola</p>
+              <p class="SandshrewFormz pkmnFormz" style="display:none;">Sandshrew</p> <!--0-->
+
+              <p class="SandslashFormz pkmnFormz" style="display:none;">Sandslash Alola</p>
+              <p class="SandslashFormz pkmnFormz" style="display:none;">Sandslash</p> <!--0-->
+
+              <p class="SceptileFormz pkmnFormz" style="display:none;">Sceptile Mega</p>
+              <p class="SceptileFormz pkmnFormz" style="display:none;">Sceptile</p> <!--0-->
+
+              <p class="ScizorFormz pkmnFormz" style="display:none;">Scizor Mega</p>
+              <p class="ScizorFormz pkmnFormz" style="display:none;">Scizor</p> <!--0-->
+
+              <p class="SharpedoFormz pkmnFormz" style="display:none;">Sharpedo Mega</p>
+              <p class="SharpedoFormz pkmnFormz" style="display:none;">Sharpedo</p> <!--0-->
+
+              <p class="ShayminFormz pkmnFormz" style="display:none;">Shaymin land</p> <!--0-->
+              <p class="ShayminFormz pkmnFormz" style="display:none;">Shaymin Sky</p>
+
+              <p class="SliggooFormz pkmnFormz" style="display:none;">Sliggoo Hisui</p>
+              <p class="SliggooFormz pkmnFormz" style="display:none;">Sliggoo</p> <!--0-->
+
+              <p class="SlowbroFormz pkmnFormz" style="display:none;">Slowbro Galar</p>
+              <p class="SlowbroFormz pkmnFormz" style="display:none;">Slowbro Mega</p>
+              <p class="SlowbroFormz pkmnFormz" style="display:none;">Slowbro</p> <!--0-->
+
+              <p class="SlowkingFormz pkmnFormz" style="display:none;">Slowking Galar</p>
+              <p class="SlowkingFormz pkmnFormz" style="display:none;">Slowking</p> <!--0-->
+
+              <p class="SlowpokeFormz pkmnFormz" style="display:none;">Slowpoke Galar</p>
+              <p class="SlowpokeFormz pkmnFormz" style="display:none;">Slowpoke</p> <!--0-->
+
+              <p class="SneaselFormz pkmnFormz" style="display:none;">Sneasel Hisui</p>
+              <p class="SneaselFormz pkmnFormz" style="display:none;">Sneasel</p> <!--0-->
+
+              <p class="SnorlaxFormz pkmnFormz" style="display:none;">Snorlax Gmax</p>
+              <p class="SnorlaxFormz pkmnFormz" style="display:none;">Snorlax</p> <!--0-->
+
+              <p class="SquawkabillyFormz pkmnFormz" style="display:none;">Squawkabilly Green Plumage</p> <!--0-->
+              <p class="SquawkabillyFormz pkmnFormz" style="display:none;">Squawkabilly Blue Plumage</p>
+              <p class="SquawkabillyFormz pkmnFormz" style="display:none;">Squawkabilly Yellow Plumage</p>
+              <p class="SquawkabillyFormz pkmnFormz" style="display:none;">Squawkabilly White Plumage</p>
+
+              <p class="SteelixFormz pkmnFormz" style="display:none;">Steelix Mega</p>
+              <p class="SteelixFormz pkmnFormz" style="display:none;">Steelix</p> <!--0-->
+
+              <p class="StunfiskFormz pkmnFormz" style="display:none;">Stunfisk Galar</p>
+              <p class="StunfiskFormz pkmnFormz" style="display:none;">Stunfisk</p> <!--0-->
+
+              <p class="SwampertFormz pkmnFormz" style="display:none;">Swampert Mega</p>
+              <p class="SwampertFormz pkmnFormz" style="display:none;">Swampert</p> <!--0-->
+
+              <p class="TatsugiriFormz pkmnFormz" style="display:none;">Tatsugiri Curly</p> <!--0-->
+              <p class="TatsugiriFormz pkmnFormz" style="display:none;">Tatsugiri Droopy</p>
+              <p class="TatsugiriFormz pkmnFormz" style="display:none;">Tatsugiri Stretchy</p>
+
+              <p class="TaurosFormz pkmnFormz" style="display:none;">Tauros Paldea Aqua Breed</p>
+              <p class="TaurosFormz pkmnFormz" style="display:none;">Tauros Paldea Blaze Breed</p>
+              <p class="TaurosFormz pkmnFormz" style="display:none;">Tauros Paldea Combat Breed</p>
+              <p class="TaurosFormz pkmnFormz" style="display:none;">Tauros</p> <!--0-->
+
+              <p class="TerapagosFormz pkmnFormz" style="display:none;">Terapagos Stellar</p>
+              <p class="TerapagosFormz pkmnFormz" style="display:none;">Terapagos Terastal</p>
+              <p class="TerapagosFormz pkmnFormz" style="display:none;">Terapagos</p> <!--0-->
+
+              <p class="ThundurusFormz pkmnFormz" style="display:none;">Thundurus Incarnate</p> <!--0-->
+              <p class="ThundurusFormz pkmnFormz" style="display:none;">Thundurus Therian</p>
+
+              <p class="TogedemaruFormz pkmnFormz" style="display:none;">Togedemaru Totem</p>
+              <p class="TogedemaruFormz pkmnFormz" style="display:none;">Togedemaru</p> <!--0-->
+
+              <p class="TornadusFormz pkmnFormz" style="display:none;">Tornadus Incarnate</p> <!--0-->
+              <p class="TornadusFormz pkmnFormz" style="display:none;">Tornadus Therian</p>
+
+              <p class="ToxtricityFormz pkmnFormz" style="display:none;">Toxtricity Amped</p> <!--0-->
+              <p class="ToxtricityFormz pkmnFormz" style="display:none;">Toxtricity Amped Gmax</p>
+              <p class="ToxtricityFormz pkmnFormz" style="display:none;">Toxtricity Low Key</p>
+              <p class="ToxtricityFormz pkmnFormz" style="display:none;">Toxtricity Low Key Gmax</p>
+
+              <p class="TyphlosionFormz pkmnFormz" style="display:none;">Typhlosion Hisui</p>
+              <p class="TyphlosionFormz pkmnFormz" style="display:none;">Typhlosion Hisui</p>
+              <p class="TyphlosionFormz pkmnFormz" style="display:none;">Typhlosion</p> <!--0-->
+
+              <p class="TyranitarFormz pkmnFormz" style="display:none;">Tyranitar Mega</p>
+              <p class="TyranitarFormz pkmnFormz" style="display:none;">Tyranitar</p> <!--0-->
+
+              <p class="UrsalunaFormz pkmnFormz" style="display:none;">Ursaluna Bloodmoon</p>
+              <p class="UrsalunaFormz pkmnFormz" style="display:none;">Ursaluna</p> <!--0-->
+
+              <p class="UrshifuFormz pkmnFormz" style="display:none;">Urshifu Rapid Strike</p>
+              <p class="UrshifuFormz pkmnFormz" style="display:none;">Urshifu Rapid Strike Gmax</p>
+              <p class="UrshifuFormz pkmnFormz" style="display:none;">Urshifu Single Strike</p> <!--0-->
+              <p class="UrshifuFormz pkmnFormz" style="display:none;">Urshifu Single Strike Gmax</p>
+
+              <p class="VenusaurFormz pkmnFormz" style="display:none;">Venusaur Gmax</p>
+              <p class="VenusaurFormz pkmnFormz" style="display:none;">Venusaur Mega</p>
+              <p class="VenusaurFormz pkmnFormz" style="display:none;">Venusaur</p> <!--0-->
+
+              <p class="VikavoltFormz pkmnFormz" style="display:none;">Vikavolt Totem</p>
+              <p class="VikavoltFormz pkmnFormz" style="display:none;">Vikavolt</p> <!--0-->
+
+              <p class="VoltorbFormz pkmnFormz" style="display:none;">Voltorb Hisui</p>
+              <p class="VoltorbFormz pkmnFormz" style="display:none;">Voltorb</p> <!--0-->
+
+              <p class="VulpixFormz pkmnFormz" style="display:none;">Vulpix Alola</p>
+              <p class="VulpixFormz pkmnFormz" style="display:none;">Vulpix</p> <!--0-->
+
+              <p class="WeezingFormz pkmnFormz" style="display:none;">Weezing Galar</p>
+              <p class="WeezingFormz pkmnFormz" style="display:none;">Weezing</p> <!--0-->
+
+              <p class="WishiwashiFormz pkmnFormz" style="display:none;">Wishiwashi School</p>
+              <p class="WishiwashiFormz pkmnFormz" style="display:none;">Wishiwashi Solo</p> <!--0-->
+
+              <p class="WooperFormz pkmnFormz" style="display:none;">Wooper Paldea</p>
+              <p class="WooperFormz pkmnFormz" style="display:none;">Wooper</p> <!--0-->
+
+              <p class="WormadamFormz pkmnFormz" style="display:none;">Wormadam Plant</p> <!--0-->
+              <p class="WormadamFormz pkmnFormz" style="display:none;">Wormadam Sandy</p>
+              <p class="WormadamFormz pkmnFormz" style="display:none;">Wormadam Trash</p>
+
+              <p class="YamaskFormz pkmnFormz" style="display:none;">Yamask Galar</p>
+              <p class="YamaskFormz pkmnFormz" style="display:none;">Yamask</p> <!--0-->
+
+              <p class="ZacianFormz pkmnFormz" style="display:none;">Zacian Crowned</p>
+              <p class="ZacianFormz pkmnFormz" style="display:none;">Zacian</p> <!--0-->
+
+              <p class="ZamazentaFormz pkmnFormz" style="display:none;">Zamazenta Crowned</p>
+              <p class="ZamazentaFormz pkmnFormz" style="display:none;">Zamazenta</p> <!--0-->
+
+              <p class="ZapdosFormz pkmnFormz" style="display:none;">Zapdos Galar</p>
+              <p class="ZapdosFormz pkmnFormz" style="display:none;">Zapdos</p> <!--0-->
+
+              <p class="ZarudeFormz pkmnFormz" style="display:none;">Zarude Dada</p>
+              <p class="ZarudeFormz pkmnFormz" style="display:none;">Zarude</p> <!--0-->
+
+              <p class="ZigzagoonFormz pkmnFormz" style="display:none;">Zigzagoon Galar</p>
+              <p class="ZigzagoonFormz pkmnFormz" style="display:none;">Zigzagoon</p> <!--0-->
+
+              <p class="ZoroarkFormz pkmnFormz" style="display:none;">Zoroark Hisui</p>
+              <p class="ZoroarkFormz pkmnFormz" style="display:none;">Zoroark</p> <!--0-->
+
+              <p class="ZoruaFormz pkmnFormz" style="display:none;">Zorua Hisui</p>
+              <p class="ZoruaFormz pkmnFormz" style="display:none;">Zorua</p> <!--0-->
+
+              <p class="ZygardeFormz pkmnFormz" style="display:none;">Zygarde 10 Power Construct</p>
+              <p class="ZygardeFormz pkmnFormz" style="display:none;">Zygarde 10</p>
+              <p class="ZygardeFormz pkmnFormz" style="display:none;">Zygarde 50 Power Construct</p>
+              <p class="ZygardeFormz pkmnFormz" style="display:none;">Zygarde 50</p> <!--0-->
+              <p class="ZygardeFormz pkmnFormz" style="display:none;">Zygarde Complete</p>
+
+              <p class="Credits pkmnFormz" style="display:none;">Original Code: Taylor Adami (My Teacher)</p>
+              <p class="Credits pkmnFormz" style="display:none;">Additions: Enzo Alexander (Me)</p>
+              <p class="Credits pkmnFormz" style="display:none;">Coding Resource 1: ChatGPT</p>
+              <p class="Credits pkmnFormz" style="display:none;">Coding Resource 2: Stack Overflow</p> <!--0-->
+              <p class="Credits pkmnFormz" style="display:none;">Coding Resource 3: PokéAPI</p>
+              <p class="Credits pkmnFormz" style="display:none;">A Special Thanks to my brother Mark Alexander, for introducing me to the issue of Vivillon and leading me down this cursed path.</p>
+              <p class="Credits pkmnFormz" style="display:none;">Thank You and Goodnight.</p>
+              <p class="Credits pkmnFormz" style="display:none;">"Bishaaan"</p>
+          </div>
+        <!-- </div> -->
+        <div id="data">
+          <div id="types">
+            <span style="background: rgb(116, 203, 72);" class="type">Grass</span>
+            <span style="background: rgb(164, 62, 158);" class="type">Poison</span>
+          </div>
+          <h4 style="color: rgb(116,203,72);" id="BaseStats">Base Stats</h4>
+          <div id="stats">
+            <div class="stat-row">
+              <div class="stat-desc">HP</div>
+              <div class="stat-number">045</div>
+              <div class="stat-bar">
+                <div class="bar-outer">
+                  <div class="bar-inner" style="width:18%;">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="stat-row">
+              <div class="stat-desc">ATK</div>
+              <div class="stat-number">049</div>
+              <div class="stat-bar">
+                <div class="bar-outer">
+                  <div class="bar-inner" style="width:19.6%;">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="stat-row">
+              <div class="stat-desc">DEF</div>
+              <div class="stat-number">049</div>
+              <div class="stat-bar">
+                <div class="bar-outer">
+                  <div class="bar-inner" style="width:19.6%;">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="stat-row">
+              <div class="stat-desc">SATK</div>
+              <div class="stat-number">065</div>
+              <div class="stat-bar">
+                <div class="bar-outer">
+                  <div class="bar-inner" style="width:26%;">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="stat-row">
+              <div class="stat-desc">SDEF</div>
+              <div class="stat-number">065</div>
+              <div class="stat-bar">
+                <div class="bar-outer">
+                  <div class="bar-inner" style="width:26%;">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="stat-row">
+              <div class="stat-desc">SPD</div>
+              <div class="stat-number">045</div>
+              <div class="stat-bar">
+                <div class="bar-outer">
+                  <div class="bar-inner" style="width:18%;">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="stat-row">
+              <div class="stat-desc" id="TotalDesc">Total</div>
+              <div class="stat-number" id="Total">318</div>
+              <div class="stat-bar">
+                <div class="bar-outer" id="outer-total">
+                  <div class="bar-inner" id="inner-total" style="width:31.8%;">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button type="button" name="button" style="background:rgba(0,0,0,0); border:none; width:100%; height:20px;"><input type="checkbox" name="" value="" onclick="shinyLocks();"></button>
+
+
+
+          </div>
+        </div>
+        </div>
+        <div id="Moves">
+          <table>
+            <thead>
+              <tr id="MoveListHeader" style="color:rgb(116, 203, 072);">
+                <th>Name</th>
+                <th>Type</th>
+                <th>Class</th>
+                <th>Power</th>
+                <th>PP</th>
+                <th>Accuracy</th>
+              </tr>
+            </thead>
+            <tbody id="MoveList">
+              <tr class="Move" style="background: rgb(170, 166, 127);">
+                <td class="MoveName">razor wind</td>
+                <td class="MoveType">normal</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/special.png" alt="special" class="MoveClass">
+                </td>
+                <td class="MovePower">80</td>
+                <td class="MovePP">10</td>
+                <td class="MoveAcc">100%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(170, 166, 127);">
+                <td class="MoveName">swords dance</td>
+                <td class="MoveType">normal</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/status.png" alt="status" class="MoveClass">
+                </td>
+                <td class="MovePower">N/A</td>
+                <td class="MovePP">20</td>
+                <td class="MoveAcc">N/A</td>
+              </tr>
+              <tr class="Move" style="background: rgb(170, 166, 127);">
+                <td class="MoveName">cut</td>
+                <td class="MoveType">normal</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/physical.png" alt="physical" class="MoveClass">
+                </td>
+                <td class="MovePower">50</td>
+                <td class="MovePP">30</td>
+                <td class="MoveAcc">95%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(170, 166, 127);">
+                <td class="MoveName">bind</td>
+                <td class="MoveType">normal</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/physical.png" alt="physical" class="MoveClass">
+                </td>
+                <td class="MovePower">15</td>
+                <td class="MovePP">20</td>
+                <td class="MoveAcc">85%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(116, 203, 58);">
+                <td class="MoveName">vine whip</td>
+                <td class="MoveType">grass</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/physical.png" alt="physical" class="MoveClass">
+                </td>
+                <td class="MovePower">45</td>
+                <td class="MovePP">25</td>
+                <td class="MoveAcc">100%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(170, 166, 127);">
+                <td class="MoveName">headbutt</td>
+                <td class="MoveType">normal</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/physical.png" alt="physical" class="MoveClass">
+                </td>
+                <td class="MovePower">70</td>
+                <td class="MovePP">15</td>
+                <td class="MoveAcc">100%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(170, 166, 127);">
+                <td class="MoveName">tackle</td>
+                <td class="MoveType">normal</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/physical.png" alt="physical" class="MoveClass">
+                </td>
+                <td class="MovePower">40</td>
+                <td class="MovePP">35</td>
+                <td class="MoveAcc">100%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(170, 166, 127);">
+                <td class="MoveName">body slam</td>
+                <td class="MoveType">normal</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/physical.png" alt="physical" class="MoveClass">
+                </td>
+                <td class="MovePower">85</td>
+                <td class="MovePP">15</td>
+                <td class="MoveAcc">100%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(170, 166, 127);">
+                <td class="MoveName">take down</td>
+                <td class="MoveType">normal</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/physical.png" alt="physical" class="MoveClass">
+                </td>
+                <td class="MovePower">90</td>
+                <td class="MovePP">20</td>
+                <td class="MoveAcc">85%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(170, 166, 127);">
+                <td class="MoveName">double edge</td>
+                <td class="MoveType">normal</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/physical.png" alt="physical" class="MoveClass">
+                </td>
+                <td class="MovePower">120</td>
+                <td class="MovePP">15</td>
+                <td class="MoveAcc">100%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(170, 166, 127);">
+                <td class="MoveName">growl</td>
+                <td class="MoveType">normal</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/status.png" alt="status" class="MoveClass">
+                </td>
+                <td class="MovePower">N/A</td>
+                <td class="MovePP">40</td>
+                <td class="MoveAcc">100%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(170, 166, 127);">
+                <td class="MoveName">strength</td>
+                <td class="MoveType">normal</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/physical.png" alt="physical" class="MoveClass">
+                </td>
+                <td class="MovePower">80</td>
+                <td class="MovePP">15</td>
+                <td class="MoveAcc">100%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(116, 203, 58);">
+                <td class="MoveName">mega drain</td>
+                <td class="MoveType">grass</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/special.png" alt="special" class="MoveClass">
+                </td>
+                <td class="MovePower">40</td>
+                <td class="MovePP">15</td>
+                <td class="MoveAcc">100%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(116, 203, 58);">
+                <td class="MoveName">leech seed</td>
+                <td class="MoveType">grass</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/status.png" alt="status" class="MoveClass">
+                </td>
+                <td class="MovePower">N/A</td>
+                <td class="MovePP">10</td>
+                <td class="MoveAcc">90%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(170, 166, 127);">
+                <td class="MoveName">growth</td>
+                <td class="MoveType">normal</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/status.png" alt="status" class="MoveClass">
+                </td>
+                <td class="MovePower">N/A</td>
+                <td class="MovePP">20</td>
+                <td class="MoveAcc">N/A</td>
+              </tr>
+              <tr class="Move" style="background: rgb(116, 203, 58);">
+                <td class="MoveName">razor leaf</td>
+                <td class="MoveType">grass</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/physical.png" alt="physical" class="MoveClass">
+                </td>
+                <td class="MovePower">55</td>
+                <td class="MovePP">25</td>
+                <td class="MoveAcc">95%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(116, 203, 58);">
+                <td class="MoveName">solar beam</td>
+                <td class="MoveType">grass</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/special.png" alt="special" class="MoveClass">
+                </td>
+                <td class="MovePower">120</td>
+                <td class="MovePP">10</td>
+                <td class="MoveAcc">100%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(164, 50, 158);">
+                <td class="MoveName">poison powder</td>
+                <td class="MoveType">poison</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/status.png" alt="status" class="MoveClass">
+                </td>
+                <td class="MovePower">N/A</td>
+                <td class="MovePP">35</td>
+                <td class="MoveAcc">75%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(116, 203, 58);">
+                <td class="MoveName">sleep powder</td>
+                <td class="MoveType">grass</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/status.png" alt="status" class="MoveClass">
+                </td>
+                <td class="MovePower">N/A</td>
+                <td class="MovePP">15</td>
+                <td class="MoveAcc">75%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(116, 203, 58);">
+                <td class="MoveName">petal dance</td>
+                <td class="MoveType">grass</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/special.png" alt="special" class="MoveClass">
+                </td>
+                <td class="MovePower">120</td>
+                <td class="MovePP">10</td>
+                <td class="MoveAcc">100%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(167, 183, 29);">
+                <td class="MoveName">string shot</td>
+                <td class="MoveType">bug</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/status.png" alt="status" class="MoveClass">
+                </td>
+                <td class="MovePower">N/A</td>
+                <td class="MovePP">40</td>
+                <td class="MoveAcc">95%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(164, 50, 158);">
+                <td class="MoveName">toxic</td>
+                <td class="MoveType">poison</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/status.png" alt="status" class="MoveClass">
+                </td>
+                <td class="MovePower">N/A</td>
+                <td class="MovePP">10</td>
+                <td class="MoveAcc">90%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(170, 166, 127);">
+                <td class="MoveName">rage</td>
+                <td class="MoveType">normal</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/physical.png" alt="physical" class="MoveClass">
+                </td>
+                <td class="MovePower">20</td>
+                <td class="MovePP">20</td>
+                <td class="MoveAcc">100%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(170, 166, 127);">
+                <td class="MoveName">mimic</td>
+                <td class="MoveType">normal</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/status.png" alt="status" class="MoveClass">
+                </td>
+                <td class="MovePower">N/A</td>
+                <td class="MovePP">10</td>
+                <td class="MoveAcc">N/A</td>
+              </tr>
+              <tr class="Move" style="background: rgb(170, 166, 127);">
+                <td class="MoveName">double team</td>
+                <td class="MoveType">normal</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/status.png" alt="status" class="MoveClass">
+                </td>
+                <td class="MovePower">N/A</td>
+                <td class="MovePP">15</td>
+                <td class="MoveAcc">N/A</td>
+              </tr>
+              <tr class="Move" style="background: rgb(170, 166, 127);">
+                <td class="MoveName">defense curl</td>
+                <td class="MoveType">normal</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/status.png" alt="status" class="MoveClass">
+                </td>
+                <td class="MovePower">N/A</td>
+                <td class="MovePP">40</td>
+                <td class="MoveAcc">N/A</td>
+              </tr>
+              <tr class="Move" style="background: rgb(251, 85, 132);">
+                <td class="MoveName">light screen</td>
+                <td class="MoveType">psychic</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/status.png" alt="status" class="MoveClass">
+                </td>
+                <td class="MovePower">N/A</td>
+                <td class="MovePP">30</td>
+                <td class="MoveAcc">N/A</td>
+              </tr>
+              <tr class="Move" style="background: rgb(251, 85, 132);">
+                <td class="MoveName">reflect</td>
+                <td class="MoveType">psychic</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/status.png" alt="status" class="MoveClass">
+                </td>
+                <td class="MovePower">N/A</td>
+                <td class="MovePP">20</td>
+                <td class="MoveAcc">N/A</td>
+              </tr>
+              <tr class="Move" style="background: rgb(170, 166, 127);">
+                <td class="MoveName">bide</td>
+                <td class="MoveType">normal</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/physical.png" alt="physical" class="MoveClass">
+                </td>
+                <td class="MovePower">N/A</td>
+                <td class="MovePP">10</td>
+                <td class="MoveAcc">N/A</td>
+              </tr>
+              <tr class="Move" style="background: rgb(164, 50, 158);">
+                <td class="MoveName">sludge</td>
+                <td class="MoveType">poison</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/special.png" alt="special" class="MoveClass">
+                </td>
+                <td class="MovePower">65</td>
+                <td class="MovePP">20</td>
+                <td class="MoveAcc">100%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(170, 166, 127);">
+                <td class="MoveName">skull bash</td>
+                <td class="MoveType">normal</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/physical.png" alt="physical" class="MoveClass">
+                </td>
+                <td class="MovePower">130</td>
+                <td class="MovePP">10</td>
+                <td class="MoveAcc">100%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(251, 85, 132);">
+                <td class="MoveName">amnesia</td>
+                <td class="MoveType">psychic</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/status.png" alt="status" class="MoveClass">
+                </td>
+                <td class="MovePower">N/A</td>
+                <td class="MovePP">20</td>
+                <td class="MoveAcc">N/A</td>
+              </tr>
+              <tr class="Move" style="background: rgb(170, 166, 127);">
+                <td class="MoveName">flash</td>
+                <td class="MoveType">normal</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/status.png" alt="status" class="MoveClass">
+                </td>
+                <td class="MovePower">N/A</td>
+                <td class="MovePP">20</td>
+                <td class="MoveAcc">100%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(251, 85, 132);">
+                <td class="MoveName">rest</td>
+                <td class="MoveType">psychic</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/status.png" alt="status" class="MoveClass">
+                </td>
+                <td class="MovePower">N/A</td>
+                <td class="MovePP">5</td>
+                <td class="MoveAcc">N/A</td>
+              </tr>
+              <tr class="Move" style="background: rgb(170, 166, 127);">
+                <td class="MoveName">substitute</td>
+                <td class="MoveType">normal</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/status.png" alt="status" class="MoveClass">
+                </td>
+                <td class="MovePower">N/A</td>
+                <td class="MovePP">10</td>
+                <td class="MoveAcc">N/A</td>
+              </tr>
+              <tr class="Move" style="background: rgb(170, 166, 127);">
+                <td class="MoveName">snore</td>
+                <td class="MoveType">normal</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/special.png" alt="special" class="MoveClass">
+                </td>
+                <td class="MovePower">50</td>
+                <td class="MovePP">15</td>
+                <td class="MoveAcc">100%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(112, 85, 155);">
+                <td class="MoveName">curse</td>
+                <td class="MoveType">ghost</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/status.png" alt="status" class="MoveClass">
+                </td>
+                <td class="MovePower">N/A</td>
+                <td class="MovePP">10</td>
+                <td class="MoveAcc">N/A</td>
+              </tr>
+              <tr class="Move" style="background: rgb(170, 166, 127);">
+                <td class="MoveName">protect</td>
+                <td class="MoveType">normal</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/status.png" alt="status" class="MoveClass">
+                </td>
+                <td class="MovePower">N/A</td>
+                <td class="MovePP">10</td>
+                <td class="MoveAcc">N/A</td>
+              </tr>
+              <tr class="Move" style="background: rgb(164, 50, 158);">
+                <td class="MoveName">sludge bomb</td>
+                <td class="MoveType">poison</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/special.png" alt="special" class="MoveClass">
+                </td>
+                <td class="MovePower">90</td>
+                <td class="MovePP">10</td>
+                <td class="MoveAcc">100%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(222, 193, 107);">
+                <td class="MoveName">mud slap</td>
+                <td class="MoveType">ground</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/special.png" alt="special" class="MoveClass">
+                </td>
+                <td class="MovePower">20</td>
+                <td class="MovePP">10</td>
+                <td class="MoveAcc">100%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(112, 45, 255);">
+                <td class="MoveName">outrage</td>
+                <td class="MoveType">dragon</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/physical.png" alt="physical" class="MoveClass">
+                </td>
+                <td class="MovePower">120</td>
+                <td class="MovePP">10</td>
+                <td class="MoveAcc">100%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(116, 203, 58);">
+                <td class="MoveName">giga drain</td>
+                <td class="MoveType">grass</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/special.png" alt="special" class="MoveClass">
+                </td>
+                <td class="MovePower">75</td>
+                <td class="MovePP">10</td>
+                <td class="MoveAcc">100%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(170, 166, 127);">
+                <td class="MoveName">endure</td>
+                <td class="MoveType">normal</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/status.png" alt="status" class="MoveClass">
+                </td>
+                <td class="MovePower">N/A</td>
+                <td class="MovePP">10</td>
+                <td class="MoveAcc">N/A</td>
+              </tr>
+              <tr class="Move" style="background: rgb(230, 158, 172);">
+                <td class="MoveName">charm</td>
+                <td class="MoveType">fairy</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/status.png" alt="status" class="MoveClass">
+                </td>
+                <td class="MovePower">N/A</td>
+                <td class="MovePP">20</td>
+                <td class="MoveAcc">100%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(170, 166, 127);">
+                <td class="MoveName">false swipe</td>
+                <td class="MoveType">normal</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/physical.png" alt="physical" class="MoveClass">
+                </td>
+                <td class="MovePower">40</td>
+                <td class="MovePP">40</td>
+                <td class="MoveAcc">100%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(170, 166, 127);">
+                <td class="MoveName">swagger</td>
+                <td class="MoveType">normal</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/status.png" alt="status" class="MoveClass">
+                </td>
+                <td class="MovePower">N/A</td>
+                <td class="MovePP">15</td>
+                <td class="MoveAcc">85%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(167, 183, 29);">
+                <td class="MoveName">fury cutter</td>
+                <td class="MoveType">bug</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/physical.png" alt="physical" class="MoveClass">
+                </td>
+                <td class="MovePower">40</td>
+                <td class="MovePP">20</td>
+                <td class="MoveAcc">95%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(170, 166, 127);">
+                <td class="MoveName">attract</td>
+                <td class="MoveType">normal</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/status.png" alt="status" class="MoveClass">
+                </td>
+                <td class="MovePower">N/A</td>
+                <td class="MovePP">15</td>
+                <td class="MoveAcc">100%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(170, 166, 127);">
+                <td class="MoveName">sleep talk</td>
+                <td class="MoveType">normal</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/status.png" alt="status" class="MoveClass">
+                </td>
+                <td class="MovePower">N/A</td>
+                <td class="MovePP">10</td>
+                <td class="MoveAcc">N/A</td>
+              </tr>
+              <tr class="Move" style="background: rgb(170, 166, 127);">
+                <td class="MoveName">return</td>
+                <td class="MoveType">normal</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/physical.png" alt="physical" class="MoveClass">
+                </td>
+                <td class="MovePower">N/A</td>
+                <td class="MovePP">20</td>
+                <td class="MoveAcc">100%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(170, 166, 127);">
+                <td class="MoveName">frustration</td>
+                <td class="MoveType">normal</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/physical.png" alt="physical" class="MoveClass">
+                </td>
+                <td class="MovePower">N/A</td>
+                <td class="MovePP">20</td>
+                <td class="MoveAcc">100%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(170, 166, 127);">
+                <td class="MoveName">safeguard</td>
+                <td class="MoveType">normal</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/status.png" alt="status" class="MoveClass">
+                </td>
+                <td class="MovePower">N/A</td>
+                <td class="MovePP">25</td>
+                <td class="MoveAcc">N/A</td>
+              </tr>
+              <tr class="Move" style="background: rgb(170, 166, 127);">
+                <td class="MoveName">sweet scent</td>
+                <td class="MoveType">normal</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/status.png" alt="status" class="MoveClass">
+                </td>
+                <td class="MovePower">N/A</td>
+                <td class="MovePP">20</td>
+                <td class="MoveAcc">100%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(116, 203, 58);">
+                <td class="MoveName">synthesis</td>
+                <td class="MoveType">grass</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/status.png" alt="status" class="MoveClass">
+                </td>
+                <td class="MovePower">N/A</td>
+                <td class="MovePP">5</td>
+                <td class="MoveAcc">N/A</td>
+              </tr>
+              <tr class="Move" style="background: rgb(170, 166, 127);">
+                <td class="MoveName">hidden power</td>
+                <td class="MoveType">normal</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/special.png" alt="special" class="MoveClass">
+                </td>
+                <td class="MovePower">60</td>
+                <td class="MovePP">15</td>
+                <td class="MoveAcc">100%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(245, 125, 49);">
+                <td class="MoveName">sunny day</td>
+                <td class="MoveType">fire</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/status.png" alt="status" class="MoveClass">
+                </td>
+                <td class="MovePower">N/A</td>
+                <td class="MovePP">5</td>
+                <td class="MoveAcc">N/A</td>
+              </tr>
+              <tr class="Move" style="background: rgb(193, 28, 47);">
+                <td class="MoveName">rock smash</td>
+                <td class="MoveType">fighting</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/physical.png" alt="physical" class="MoveClass">
+                </td>
+                <td class="MovePower">40</td>
+                <td class="MovePP">15</td>
+                <td class="MoveAcc">100%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(170, 166, 127);">
+                <td class="MoveName">facade</td>
+                <td class="MoveType">normal</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/physical.png" alt="physical" class="MoveClass">
+                </td>
+                <td class="MovePower">70</td>
+                <td class="MovePP">20</td>
+                <td class="MoveAcc">100%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(170, 166, 127);">
+                <td class="MoveName">nature power</td>
+                <td class="MoveType">normal</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/status.png" alt="status" class="MoveClass">
+                </td>
+                <td class="MovePower">N/A</td>
+                <td class="MovePP">20</td>
+                <td class="MoveAcc">N/A</td>
+              </tr>
+              <tr class="Move" style="background: rgb(170, 166, 127);">
+                <td class="MoveName">helping hand</td>
+                <td class="MoveType">normal</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/status.png" alt="status" class="MoveClass">
+                </td>
+                <td class="MovePower">N/A</td>
+                <td class="MovePP">20</td>
+                <td class="MoveAcc">N/A</td>
+              </tr>
+              <tr class="Move" style="background: rgb(116, 203, 58);">
+                <td class="MoveName">ingrain</td>
+                <td class="MoveType">grass</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/status.png" alt="status" class="MoveClass">
+                </td>
+                <td class="MovePower">N/A</td>
+                <td class="MovePP">20</td>
+                <td class="MoveAcc">N/A</td>
+              </tr>
+              <tr class="Move" style="background: rgb(117, 87, 62);">
+                <td class="MoveName">knock off</td>
+                <td class="MoveType">dark</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/physical.png" alt="physical" class="MoveClass">
+                </td>
+                <td class="MovePower">65</td>
+                <td class="MovePP">20</td>
+                <td class="MoveAcc">100%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(170, 166, 127);">
+                <td class="MoveName">secret power</td>
+                <td class="MoveType">normal</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/physical.png" alt="physical" class="MoveClass">
+                </td>
+                <td class="MovePower">70</td>
+                <td class="MovePP">20</td>
+                <td class="MoveAcc">100%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(170, 166, 127);">
+                <td class="MoveName">weather ball</td>
+                <td class="MoveType">normal</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/special.png" alt="special" class="MoveClass">
+                </td>
+                <td class="MovePower">50</td>
+                <td class="MovePP">10</td>
+                <td class="MoveAcc">100%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(116, 203, 58);">
+                <td class="MoveName">grass whistle</td>
+                <td class="MoveType">grass</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/status.png" alt="status" class="MoveClass">
+                </td>
+                <td class="MovePower">N/A</td>
+                <td class="MovePP">15</td>
+                <td class="MoveAcc">55%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(116, 203, 58);">
+                <td class="MoveName">bullet seed</td>
+                <td class="MoveType">grass</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/physical.png" alt="physical" class="MoveClass">
+                </td>
+                <td class="MovePower">25</td>
+                <td class="MovePP">30</td>
+                <td class="MoveAcc">100%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(116, 203, 58);">
+                <td class="MoveName">magical leaf</td>
+                <td class="MoveType">grass</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/special.png" alt="special" class="MoveClass">
+                </td>
+                <td class="MovePower">60</td>
+                <td class="MovePP">20</td>
+                <td class="MoveAcc">N/A</td>
+              </tr>
+              <tr class="Move" style="background: rgb(170, 166, 127);">
+                <td class="MoveName">natural gift</td>
+                <td class="MoveType">normal</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/physical.png" alt="physical" class="MoveClass">
+                </td>
+                <td class="MovePower">N/A</td>
+                <td class="MovePP">15</td>
+                <td class="MoveAcc">100%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(116, 203, 58);">
+                <td class="MoveName">worry seed</td>
+                <td class="MoveType">grass</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/status.png" alt="status" class="MoveClass">
+                </td>
+                <td class="MovePower">N/A</td>
+                <td class="MovePP">10</td>
+                <td class="MoveAcc">100%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(116, 203, 58);">
+                <td class="MoveName">seed bomb</td>
+                <td class="MoveType">grass</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/physical.png" alt="physical" class="MoveClass">
+                </td>
+                <td class="MovePower">80</td>
+                <td class="MovePP">15</td>
+                <td class="MoveAcc">100%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(116, 203, 58);">
+                <td class="MoveName">energy ball</td>
+                <td class="MoveType">grass</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/special.png" alt="special" class="MoveClass">
+                </td>
+                <td class="MovePower">90</td>
+                <td class="MovePP">10</td>
+                <td class="MoveAcc">100%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(116, 203, 58);">
+                <td class="MoveName">leaf storm</td>
+                <td class="MoveType">grass</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/special.png" alt="special" class="MoveClass">
+                </td>
+                <td class="MovePower">130</td>
+                <td class="MovePP">5</td>
+                <td class="MoveAcc">90%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(116, 203, 58);">
+                <td class="MoveName">power whip</td>
+                <td class="MoveType">grass</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/physical.png" alt="physical" class="MoveClass">
+                </td>
+                <td class="MovePower">120</td>
+                <td class="MovePP">10</td>
+                <td class="MoveAcc">85%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(170, 166, 127);">
+                <td class="MoveName">captivate</td>
+                <td class="MoveType">normal</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/status.png" alt="status" class="MoveClass">
+                </td>
+                <td class="MovePower">N/A</td>
+                <td class="MovePP">20</td>
+                <td class="MoveAcc">100%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(116, 203, 58);">
+                <td class="MoveName">grass knot</td>
+                <td class="MoveType">grass</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/special.png" alt="special" class="MoveClass">
+                </td>
+                <td class="MovePower">N/A</td>
+                <td class="MovePP">20</td>
+                <td class="MoveAcc">100%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(164, 50, 158);">
+                <td class="MoveName">venoshock</td>
+                <td class="MoveType">poison</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/special.png" alt="special" class="MoveClass">
+                </td>
+                <td class="MovePower">65</td>
+                <td class="MovePP">10</td>
+                <td class="MoveAcc">100%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(164, 50, 158);">
+                <td class="MoveName">acid spray</td>
+                <td class="MoveType">poison</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/special.png" alt="special" class="MoveClass">
+                </td>
+                <td class="MovePower">40</td>
+                <td class="MovePP">20</td>
+                <td class="MoveAcc">100%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(170, 166, 127);">
+                <td class="MoveName">round</td>
+                <td class="MoveType">normal</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/special.png" alt="special" class="MoveClass">
+                </td>
+                <td class="MovePower">60</td>
+                <td class="MovePP">15</td>
+                <td class="MoveAcc">100%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(170, 166, 127);">
+                <td class="MoveName">echoed voice</td>
+                <td class="MoveType">normal</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/special.png" alt="special" class="MoveClass">
+                </td>
+                <td class="MovePower">40</td>
+                <td class="MovePP">15</td>
+                <td class="MoveAcc">100%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(116, 203, 58);">
+                <td class="MoveName">grass pledge</td>
+                <td class="MoveType">grass</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/special.png" alt="special" class="MoveClass">
+                </td>
+                <td class="MovePower">80</td>
+                <td class="MovePP">10</td>
+                <td class="MoveAcc">100%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(170, 166, 127);">
+                <td class="MoveName">work up</td>
+                <td class="MoveType">normal</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/status.png" alt="status" class="MoveClass">
+                </td>
+                <td class="MovePower">N/A</td>
+                <td class="MovePP">30</td>
+                <td class="MoveAcc">N/A</td>
+              </tr>
+              <tr class="Move" style="background: rgb(116, 203, 58);">
+                <td class="MoveName">grassy terrain</td>
+                <td class="MoveType">grass</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/status.png" alt="status" class="MoveClass">
+                </td>
+                <td class="MovePower">N/A</td>
+                <td class="MovePP">10</td>
+                <td class="MoveAcc">N/A</td>
+              </tr>
+              <tr class="Move" style="background: rgb(170, 166, 127);">
+                <td class="MoveName">confide</td>
+                <td class="MoveType">normal</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/status.png" alt="status" class="MoveClass">
+                </td>
+                <td class="MovePower">N/A</td>
+                <td class="MovePP">20</td>
+                <td class="MoveAcc">N/A</td>
+              </tr>
+              <tr class="Move" style="background: rgb(116, 203, 58);">
+                <td class="MoveName">grassy glide</td>
+                <td class="MoveType">grass</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/physical.png" alt="physical" class="MoveClass">
+                </td>
+                <td class="MovePower">55</td>
+                <td class="MovePP">20</td>
+                <td class="MoveAcc">100%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(170, 166, 127);">
+                <td class="MoveName">tera blast</td>
+                <td class="MoveType">normal</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/special.png" alt="special" class="MoveClass">
+                </td>
+                <td class="MovePower">80</td>
+                <td class="MovePP">10</td>
+                <td class="MoveAcc">100%</td>
+              </tr>
+              <tr class="Move" style="background: rgb(116, 203, 58);">
+                <td class="MoveName">trailblaze</td>
+                <td class="MoveType">grass</td>
+                <td class="MoveClassContainer">
+                  <img src="Assets/physical.png" alt="physical" class="MoveClass">
+                </td>
+                <td class="MovePower">50</td>
+                <td class="MovePP">20</td>
+                <td class="MoveAcc">100%</td>
+              </tr>
+            </tbody>
+
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---------------------------------------------------------EXTERNAL JS------------------------------------------------------------------------------------ -->
+      <script src="Js/Script.js"></script>
+  </body>
+</html>
