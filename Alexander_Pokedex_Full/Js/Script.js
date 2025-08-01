@@ -3411,7 +3411,7 @@ search.addEventListener('change', async (event) => {
         newMoveClassContainer.classList.add('MoveClassContainer');
         newMoveRow.appendChild(newMoveClassContainer);
         const newMoveClass = document.createElement('img');
-        newMoveClass.src = "Assets/" + movData.damage_class.name.toTitleCase() + ".png";
+        newMoveClass.src = "Assets/" + toTitleCase(movData.damage_class.name) + ".png";
         newMoveClass.alt = movData.damage_class.name;
         newMoveClass.classList.add('MoveClass');
         newMoveClassContainer.appendChild(newMoveClass);
@@ -5596,7 +5596,7 @@ pkform.forEach(form => {
         newMoveClassContainer.classList.add('MoveClassContainer');
         newMoveRow.appendChild(newMoveClassContainer);
         const newMoveClass = document.createElement('img');
-        newMoveClass.src = "Assets/" + movData.damage_class.name.toTitleCase() + ".png";
+        newMoveClass.src = "Assets/" + toTitleCase(movData.damage_class.name) + ".png";
         newMoveClass.alt = movData.damage_class.name;
         newMoveClass.classList.add('MoveClass');
         newMoveClassContainer.appendChild(newMoveClass);
@@ -5813,7 +5813,7 @@ console.log(movData.type.name)
     newMoveClassContainer.classList.add('MoveClassContainer');
     newMoveRow.appendChild(newMoveClassContainer);
     const newMoveClass = document.createElement('img');
-    newMoveClass.src = "Assets/" + movData.damage_class.name.toTitleCase() + ".png";
+    newMoveClass.src = "Assets/" + toTitleCase(movData.damage_class.name) + ".png";
     newMoveClass.alt = movData.damage_class.name;
     newMoveClass.classList.add('MoveClass');
     newMoveClassContainer.appendChild(newMoveClass);
