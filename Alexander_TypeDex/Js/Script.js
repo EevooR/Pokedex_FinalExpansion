@@ -31,6 +31,12 @@ const topare = document.querySelector("#top");
 const stacfh = document.querySelector('#scfHea');
 const credih = document.querySelector('#credHea');
 
+const pkmnLis = document.querySelector('#PokemonList');
+const pkmnInd = document.querySelectorAll('.Pokemon');
+const pkmnImg = document.querySelectorAll('.PokemonImage');
+const pkmnNom = document.querySelectorAll('.PokemonName');
+
+
 
 const fetchAPI = async (pkmnName) => {
     // pkmnNameApi = pkmnName.split(' ').join('-').replaceAll(".", "").replaceAll("'", "").replaceAll("é", "e").replaceAll("-","").replaceAll("♂","-M").replaceAll("♀","-F").toLowerCase();
@@ -48,11 +54,11 @@ const fetchAPI = async (pkmnName) => {
 
   return false;
 };
-const vivAPI = async (pkmnVar) => {
-  const vivResponse = await fetch('https://pokeapi.co/api/v2/pokemon-form/' + pkmnVar);
-  const vivData = await vivResponse.json();
+const pokemonAPI = async (pkmnVar) => {
+  const pokemonResponse = await fetch('https://pokeapi.co/api/v2/pokemon/' + pkmnVar);
+  const pokemonData = await pokemonResponse.json();
 
-  return vivData;
+  return pokemonData;
 };
 const movAPI = async (pkmnMove) => {
   const movResponse = await fetch('https://pokeapi.co/api/v2/move/' + pkmnMove);
@@ -139,227 +145,15 @@ search.addEventListener('change', async (event) => {
       update(pkmnData);
       setTypeTo(pkmnData);
       setNameTo(pkmnData);
+      placePokemon(pkmnData);
 
 
 
 
   } catch (error) {
-    if ([].includes(search.value )) {
-
-      console.error("Error fetching Pokemon data:", error);
-
-      // Set the value to "Hello" in case of an error
-      search.value = "MissingNo.";
-
-      // Optionally handle the UI for error (e.g., reset other elements)
-      number.innerHTML = "#0000";  // Reset number
-
-      pimage.style.display = "block";
-      pimgsh.style.display = "block";
-      // pimagf.style.display = "block";
-      // pimgsf.style.display = "block";
-      pimagf.style.display = "none";
-      pimgsf.style.display = "none";
-
-      pimage.src = "Assets/0.png";             // Clear image
-      pimgsh.src = "Assets/0shiny.png";
-      // pimagf.src = "Assets/0f.png";
-      // pimgsf.src = "Assets/0fshiny.png";
-
-
-
-      height.innerHTML = "&nbsp" + "3.3 m";
-      weight.innerHTML = "&nbsp" + "3507.2 lbs";
-
-      topare.style.backgroundImage = 'url("Assets/pokeball.png")';
-      showVarience("Credits")
-      stacfh.style.display = "none";
-      credih.style.display = "block";
-
-      const audio = new Audio('https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/32.ogg');
-      audio.play();
-      ptypes.innerHTML = ''; // Clear the current types
-      let newType = document.createElement('span');
-      newType.innerHTML = "Bird"; // Set "Bird" as the type for Missingno
-      newType.classList.add('type');
-      ptypes.appendChild(newType);
-      newType.style.backgroundColor = `rgb(${typeColors["bird"][0]}, ${typeColors["bird"][1]}, ${typeColors["bird"][2]})`; // Apply color for Bird type
-      let extraType = document.createElement('span');
-      extraType.innerHTML = "Normal"; // Set "Bird" as the type for Missingno
-      extraType.classList.add('type');
-      ptypes.appendChild(extraType);
-      extraType.style.backgroundColor = `rgb(${typeColors["normal"][0]}, ${typeColors["normal"][1]}, ${typeColors["normal"][2]})`; // Apply color for Bird type
-      pkbody.style.backgroundColor = `rgb(${typeColors["bird"][0]}, ${typeColors["bird"][1]}, ${typeColors["bird"][2]})`; // Set background color for Bird type
-      document.body.style.backgroundColor = `rgb(${bgColors["normal"][0]}, ${bgColors["normal"][1]}, ${bgColors["normal"][2]})`; // Set background color for Bird type
-
-      pabili.innerHTML = '';
-
-      let newAbil = document.createElement('div');
-      newAbil.innerHTML = toTitleCase("No Ability");
-      newAbil.classList.add('ability');
-      pabili.appendChild(newAbil);
-
-      let newnewAbil = document.createElement('div');
-      newnewAbil.innerHTML = toTitleCase("Pressure");
-      newnewAbil.classList.add('ability', 'hidden');
-      pabili.appendChild(newnewAbil);
-
-      mvlihe.style.color = `rgb(${typeColors["bird"][0]}, ${typeColors["bird"][1]}, ${typeColors["bird"][2]})`;
-
-
-
-
-
-      const customMoves = [
-        "water-gun", "water-gun","sky-attack","pay-day", "bind", "mega-punch", "razor-wind","swords-dance","mega-kick","toxic","take-down",
-        "double-edge","bubble-beam","ice-beam","blizzard","submission","seismic-toss","rage","thunder","earthquake","fissure","psychic",
-        "teleport","rest","thunder-wave","tri-attack","substitute","cut","fly"
-
-      ];
-
-
-
-
-
-      try {
-      moveli.innerHTML = '';
-      customMoves.forEach( async (move) => {
-        console.log(move)
-        const movData = await movAPI(move);
-        console.log(movData);
-        const newMoveRow = document.createElement('tr');
-        const rowcolor = typeColors[movData.type.name].toString();
-        newMoveRow.classList.add('Move');
-        newMoveRow.id = 'ActiveMove';
-        // pkbody.style.backgroundColor = `rgb(${typeColors["bird"][0]}, ${typeColors["bird"][1]}, ${typeColors["bird"][2]})`; // Set background color for Bird type
-        newMoveRow.style.background = `rgb(${typeColors[movData.type.name][0]}, ${typeColors[movData.type.name][1]}, ${typeColors[movData.type.name][2]})`;
-        moveli.appendChild(newMoveRow);
-    console.log(movData.type.name)
-
-        const newMoveName = document.createElement('td');
-        newMoveName.innerHTML = toTitleCase(movData.name.toString().replaceAll("-", " "));
-        newMoveName.classList.add('MoveName');
-        newMoveRow.appendChild(newMoveName);
-
-        const newMoveType = document.createElement('td');
-        newMoveType.innerHTML = movData.type.name.toString().replaceAll("-", " ");
-        newMoveType.classList.add('MoveType');
-        newMoveRow.appendChild(newMoveType);
-
-        const newMoveClassContainer = document.createElement('td');
-        newMoveClassContainer.id = 'ActiveMoveClass';
-        newMoveClassContainer.classList.add('MoveClassContainer');
-        newMoveRow.appendChild(newMoveClassContainer);
-        const newMoveClass = document.createElement('img');
-        newMoveClass.src = "Assets/" + movData.damage_class.name + ".png";
-        newMoveClass.alt = movData.damage_class.name;
-        newMoveClass.classList.add('MoveClass');
-        newMoveClassContainer.appendChild(newMoveClass);
-
-
-
-
-        const newMovePower = document.createElement('td');
-        if (movData.power == null) {
-          newMovePower.innerHTML = "N/A";
-        } else {
-          newMovePower.innerHTML = movData.power;
-        }
-        newMovePower.classList.add('MovePower');
-        newMoveRow.appendChild(newMovePower);
-
-        const newMovePP = document.createElement('td');
-        if (movData.pp == null) {
-          newMovePP.innerHTML = "N/A";
-        } else {
-          newMovePP.innerHTML = movData.pp;
-        }
-        newMovePP.classList.add('MovePP');
-        newMoveRow.appendChild(newMovePP);
-
-        const newMoveAcc = document.createElement('td');
-        if (movData.accuracy == null) {
-          newMoveAcc.innerHTML = "N/A";
-        } else {
-          newMoveAcc.innerHTML = movData.accuracy + "%";
-        }
-        newMoveAcc.classList.add('MoveAcc');
-        newMoveRow.appendChild(newMoveAcc);
-
-          newMoveRow.removeAttribute('id');
-          newMoveClassContainer.removeAttribute('id');
-
-
-          });
-        } catch (error) {
-          console.log(error);
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        // Custom stats for Missingno (replace with any values you want)
-        const customStats = [
-          { base_stat: 33, stat: { name: "hp" } },         // HP
-          { base_stat: 136, stat: { name: "attack" } },     // Attack
-          { base_stat: 0, stat: { name: "defense" } },    // Defense
-          { base_stat: 6, stat: { name: "special-attack" } }, // Special Attack
-          { base_stat: 6, stat: { name: "special-defense" } }, // Special Defense
-          { base_stat: 29, stat: { name: "speed" } },      // Speed
-          // { base_stat: 231, stat: { name: "total" } },      // total
-        ];
-
-
-        // Manually update the stats for Missingno
-   let totalStats = 0; // Initialize total stats variable
-   stanum.forEach((statElem, index) => {
-       const statValue = customStats[index].base_stat;
-       statElem.innerHTML = statValue.toString().padStart(3, "0");
-
-       totalStats += statValue; // Add each stat value to the total
-       let barStat = statValue / 2.5;
-       stibar[index].style.width = barStat.toString() + '%';
-       let totstat = totalStats / 10;
-       itotal.style.width = barStat.toString() + '%';
-       stibar[index].style.backgroundColor = `rgb(${typeColors["bird"][0]}, ${typeColors["bird"][1]}, ${typeColors["bird"][2]})`;
-       stobar[index].style.backgroundColor = `rgba(${typeColors["bird"][0]}, ${typeColors["bird"][1]}, ${typeColors["bird"][2]}, ${".3"})`;
-       stanum[index].style.color = `rgba(${typeColors["bird"][0]}, ${typeColors["bird"][1]}, ${typeColors["bird"][2]})`;
-       stdesc[index].style.borderRightColor =`rgba(${typeColors["bird"][0]}, ${typeColors["bird"][1]}, ${typeColors["bird"][2]})`;
-       stdesc[index].style.color =`rgba(${typeColors["bird"][0]}, ${typeColors["bird"][1]}, ${typeColors["bird"][2]})`;
-       sbinnr.style.scrollbarColor = `rgba(${typeColors["bird"][0]}, ${typeColors["bird"][1]}, ${typeColors["bird"][2]}) rgba(${0},${0},${0},${0})`;
-       // sboost.style.backgroundColor = `rgba(${typeColors["bird"][0]}, ${typeColors["bird"][1]}, ${typeColors["bird"][2]})`;
-       bastat.style.color = `rgba(${typeColors["bird"][0]}, ${typeColors["bird"][1]}, ${typeColors["bird"][2]})`;
-       stotal.style.color = `rgb(${typeColors["normal"][0]}, ${typeColors["normal"][1]}, ${typeColors["normal"][2]})`;
-       todesc.style.color = `rgba(${typeColors["normal"][0]}, ${typeColors["normal"][1]}, ${typeColors["normal"][2]})`;
-       sttbar.style.backgroundColor = `rgba(${typeColors["normal"][0]}, ${typeColors["normal"][1]}, ${typeColors["normal"][2]}, ${".3"})`;
-       itotal.style.backgroundColor = `rgb(${typeColors["normal"][0]}, ${typeColors["normal"][1]}, ${typeColors["normal"][2]})`;
-   });
-
-   // Update total stat value (sum of custom stats)
-   // stotal.innerHTML = totalStats.toString().padStart(3, '0');
-   // let tPercent = totalStats / 10;
-   // itotal.style.width = tPercent.toString() + "%";
-
-
-    } else {
       alert("That Pokemon Does not Exist, or has not been implemented correctly, Try Again.");
       console.log(error);
-    }
+
   }
 }); // calls "search" then adds the function "On change, run an event, the folowing event being alerting the user to the change sending it as the target value."
 
@@ -370,7 +164,7 @@ search.addEventListener('change', async (event) => {
 
 function update(pkmnData) {
   // For debuging
-  console.log(pkmnData);
+  //console.log(pkmnData);
 
   const mainColor = typeColors[pkmnData.name];
 
@@ -384,14 +178,14 @@ function update(pkmnData) {
   pkmnData.moves.forEach( async (m) => {
     let pkmnMove = m.name;
     const movData = await movAPI(pkmnMove);
-    console.log(movData);
+    //console.log(movData);
     const newMoveRow = document.createElement('tr');
     const rowcolor = typeColors[movData.type.name].toString();
     newMoveRow.classList.add('Move');
     newMoveRow.id = 'ActiveMove';
     // pkbody.style.backgroundColor = `rgb(${typeColors["bird"][0]}, ${typeColors["bird"][1]}, ${typeColors["bird"][2]})`; // Set background color for Bird type
     moveli.appendChild(newMoveRow);
-console.log(movData.type.name)
+//console.log(movData.type.name)
 
     const newMoveName = document.createElement('td');
     newMoveName.innerHTML = toTitleCase(movData.name.toString().replaceAll("-", " "));
@@ -452,13 +246,6 @@ console.log(movData.type.name)
 
 }
 
-
-
-
-
-
-
-
 function setTypeTo(sourceData) {
   const mainColor = typeColors[sourceData.name];
   let color = typeColors[sourceData.name];
@@ -472,7 +259,87 @@ function setNameTo(sourceData) {
   search.value =  toTitleCase(sourceData.name.toString().replaceAll("-", " "));
 };
 
+function placePokemon(pkmnData) {
+
+  pkmnLis.innerHTML = '';
+  pkmnData.pokemon.forEach( async (t) => {
+
+    const newMon = document.createElement('div');
+    newMon.classList.add('Pokemon');
+    pkmnLis.appendChild(newMon);
+    let monData = await pokemonAPI(t.pokemon.name);
+    console.log(monData);
+    console.log(monData.types.length);
+
+
+     let priMove = monData.types[0];
+
+    if (monData.types.length == 2) {
+       let secMove = monData.types[1];
+
+
+       if (t.slot == "1") {
+         console.log(secMove.type.name);
+         pokemonType = secMove.type.name;
+       }
+       if (t.slot == "2") {
+         console.log("!!!!" + pkmnData.name + "!!!!");
+         console.log(priMove.type.name);
+         pokemonType = priMove.type.name;
+       }
+    } else {
+      console.log("Monotype " + priMove.type.name);
+      pokemonType = priMove.type.name;
+    }
+      let color = typeColors[pokemonType];
+      newMon.style.backgroundColor = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
+
+      const pimage = document.createElement('img');
+      pimage.classList.add('PokemonImage');
+      if (monData.sprites.front_default !== null) {
+        pimage.src = monData.sprites.front_default;
+      } else {
+        if (monData.sprites.other.showdown.front_default !== null) {
+          pimage.src = monData.sprites.other.showdown.front_default;
+        } else {
+          if (monData.sprites.other.home.front_default !== null) {
+            pimage.src = monData.sprites.other.home.front_default;
+          } else {
+            if (monData.sprites.other.home.front_default == null) {
+            pimage.style.display = "none";
+          }
+          }
+        }
+        }
+
+        if (t.pokemon.name == "jigglypuff") {
+           pokeCry = 'Assets/Jigglypuff_Song.wav';
+        } else {
+          if (["sentret", "lillipup"].includes(t.pokemon.name)) {
+             pokeCry = monData.cries.legacy;
+          }else {
+               pokeCry = monData.cries.latest;
+            }
+          }
+
+          // pimage.addEventListener("onclick", playCry(pokeCry));
+          pimage.setAttribute('onclick', 'playCry("' + pokeCry.toString() + '")');
+          newMon.appendChild(pimage);
+
+        const pName = document.createElement('span');
+        pName.classList.add('PokemonName');
+        thePokeName = t.pokemon.name;
+        thepokepoke = thePokeName.toString().replaceAll("-", " ");
+        pName.innerHTML = toTitleCase(thepokepoke);
+        newMon.appendChild(pName);
+  });
+};
 
 
 
-// Copied from Stack Overflow for Title casing.
+
+
+function playCry(cry) {
+  const pokemonCry = new Audio(cry);
+  pokemonCry.play();
+}
