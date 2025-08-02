@@ -22,7 +22,6 @@ const actmov = document.getElementById('#ActiveMove')
 const acmovc = document.getElementById('#ActiveMoveClass')
 
 const pokebg = document.querySelector('#pkbody');
-const pktype = document.querySelectorAll(".type");
 const pkbody = document.querySelector("#Pokedex");
 
 const pkmnfz = document.querySelectorAll('.pkmnFormz');
@@ -36,7 +35,37 @@ const pkmnInd = document.querySelectorAll('.Pokemon');
 const pkmnImg = document.querySelectorAll('.PokemonImage');
 const pkmnNom = document.querySelectorAll('.PokemonName');
 
+const typeLis = document.querySelectorAll('.TypeLists');
+const pktype = document.querySelectorAll(".type");
+const superef = document.querySelector('#SupEff');
+const notveef = document.querySelector('#NoVeEff');
+const noeffec = document.querySelector('#NoEff');
+const weakto = document.querySelector('#WeaTo');
+const resists = document.querySelector('#Resists');
+const imuneto = document.querySelector('#ImmTo');
+const neuteff = document.querySelector('#Neutral');
 
+
+const typeMatchups = {
+    'normal': 0,
+    'fire': 0,
+    'water': 0,
+    'electric': 0,
+    'grass': 0,
+    'ice': 0,
+    'fighting': 0,
+    'poison': 0,
+    'ground': 0,
+    'flying': 0,
+    'psychic': 0,
+    'bug': 0,
+    'rock': 0,
+    'ghost': 0,
+    'dragon': 0,
+    'steel': 0,
+    'dark': 0,
+    'fairy': 0
+};
 
 const fetchAPI = async (pkmnName) => {
     // pkmnNameApi = pkmnName.split(' ').join('-').replaceAll(".", "").replaceAll("'", "").replaceAll("é", "e").replaceAll("-","").replaceAll("♂","-M").replaceAll("♀","-F").toLowerCase();
@@ -146,7 +175,7 @@ search.addEventListener('change', async (event) => {
       setTypeTo(pkmnData);
       setNameTo(pkmnData);
       placePokemon(pkmnData);
-
+      typeMashups(pkmnData);
 
 
 
@@ -335,7 +364,88 @@ function placePokemon(pkmnData) {
   });
 };
 
+function typeMashups(pkmnData) {
 
+  const dmgRelations = pkmnData.damage_relations;
+
+  typeMatchups['normal'] = 0;
+  typeMatchups['fire'] = 0;
+  typeMatchups['water'] = 0;
+  typeMatchups['electric'] = 0;
+  typeMatchups['grass'] = 0;
+  typeMatchups['ice'] = 0;
+  typeMatchups['fighting'] = 0;
+  typeMatchups['poison'] = 0;
+  typeMatchups['ground'] = 0;
+  typeMatchups['flying'] = 0;
+  typeMatchups['psychic'] = 0;
+  typeMatchups['bug'] = 0;
+  typeMatchups['rock'] = 0;
+  typeMatchups['ghost'] = 0;
+  typeMatchups['dragon'] = 0;
+  typeMatchups['steel'] = 0;
+  typeMatchups['dark'] = 0;
+  typeMatchups['fairy'] = 0;
+
+
+  superef.innerHTML = '';
+  notveef.innerHTML = '';
+  noeffec.innerHTML = '';
+  weakto.innerHTML = '';
+  resists.innerHTML = '';
+  imuneto.innerHTML = '';
+  neuteff.innerHTML = '';
+
+
+  if (dmgRelations.double_damage_to.length !== 0) {
+    dmgRelations.double_damage_to.forEach((t) => {
+      typeMatchups[t.name.toString()] = 1;
+      const newType = document.createElement('span');
+      newType.classList.add('type');
+      newType.innerHTML = toTitleCase(t.name);
+      let tycolor = typeColors[t.name];
+      newType.style.backgroundColor = `rgb(${tycolor[0]}, ${tycolor[1]}, ${tycolor[2]})`;
+      superef.appendChild(newType);
+    });
+  } else {
+    const newType = document.createElement('span');
+    newType.classList.add('type');
+    newType.innerHTML = "None";
+    let tycolor = typeColors['unknown'];
+    newType.style.backgroundColor = `rgb(${tycolor[0]}, ${tycolor[1]}, ${tycolor[2]})`;
+    superef.appendChild(newType);
+  }
+
+  if (dmgRelations.half_damage_to.length !== 0) {
+    dmgRelations.half_damage_to.forEach((t) => {
+      typeMatchups[t.name.toString()] = 1;
+      const newType = document.createElement('span');
+      newType.classList.add('type');
+      newType.innerHTML = toTitleCase(t.name);
+      let tycolor = typeColors[t.name];
+      newType.style.backgroundColor = `rgb(${tycolor[0]}, ${tycolor[1]}, ${tycolor[2]})`;
+      notveef.appendChild(newType);
+    });
+  } else {
+    const newType = document.createElement('span');
+    newType.classList.add('type');
+    newType.innerHTML = "None";
+    let tycolor = typeColors['unknown'];
+    newType.style.backgroundColor = `rgb(${tycolor[0]}, ${tycolor[1]}, ${tycolor[2]})`;
+    notveef.appendChild(newType);
+  }
+
+
+
+
+
+
+
+
+
+
+
+};
 
 
 
