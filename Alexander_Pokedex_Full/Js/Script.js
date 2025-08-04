@@ -3336,7 +3336,7 @@ search.addEventListener('change', async (event) => {
       stacfh.style.display = "none";
       credih.style.display = "block";
 
-      const audio = new Audio('https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/legacy/32.ogg');
+      const audio = new Audio('Assets\cries_pokemon_legacy_32.ogg');
       audio.play();
       ptypes.innerHTML = ''; // Clear the current types
       let newType = document.createElement('span');
