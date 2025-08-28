@@ -50,7 +50,7 @@ transition: var(--easeSec) ease-in-out;
 
 #top {
   height: 40%;
-  background: url('../Assets/pokeball.png');
+  background: url('../Assets/pokeballs.png');
   background-repeat: no-repeat;
   background-position: right;
   /* background-size: cover; */
@@ -81,7 +81,7 @@ transition: var(--easeSec) ease-in-out;
   justify-content: flex-end;
 }
 
-#pokemon-image, #pokemon-image-shiny, #pokemon-image-F, #pokemon-image-shiny-F {
+#pokemon-image {
   width: 200px;
   max-height: 200px;
   transform: translateY(5.5rem);
@@ -274,7 +274,9 @@ table {
   text-align: center;
 }
 
-
+.mes {
+  filter: brightness(0) saturate(100%);
+}
 
 .MoveClass {
   display: block;
