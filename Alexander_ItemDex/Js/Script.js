@@ -6,49 +6,26 @@
 
 // Store Variables for JS
 const search = document.querySelector('#Search'); //Sets the Constant to "search" and searches the document for the first case of the ID "Search"
-const pkform = document.querySelectorAll('.pkmnFormz')
 const number = document.querySelector('#number'); //Sets the Constant to "number" and searches the document for the first case of the ID "number"
 const pimage = document.querySelector('#pokemon-image');
-const pimgsh = document.querySelector('#pokemon-image-shiny');
-const pimagf = document.querySelector('#pokemon-image-F');
-const pimgsf = document.querySelector('#pokemon-image-shiny-F');
 
-const mvlihe = document.querySelector('#MoveListHeader');
-const moveli = document.querySelector('#MoveList');
-const movesp = document.querySelectorAll('.Move');
-const movenm = document.querySelectorAll('.MoveName');
-const movety = document.querySelectorAll('.MoveType');
-const movecl = document.querySelectorAll('.MoveClass');
-const movepr = document.querySelectorAll('.MovePower');
-const movepp = document.querySelectorAll('.MovePP');
-const moveac = document.querySelectorAll('.MoveAcc');
-const movecc = document.querySelectorAll('.MoveClassContainer');
-const actmov = document.getElementById('#ActiveMove')
-const acmovc = document.getElementById('#ActiveMoveClass')
 
 const pokebg = document.querySelector('#pkbody');
-const pktype = document.querySelectorAll(".type");
-const ptypes = document.querySelector("#types");
 const pkbody = document.querySelector("#Pokedex");
-const stanum = document.querySelectorAll(".stat-number");
-const stibar = document.querySelectorAll(".bar-inner");
-const stotal = document.querySelector("#Total");
-const itotal = document.querySelector("#inner-total");
-const stobar = document.querySelectorAll(".bar-outer");
-const sttbar = document.querySelector("#outer-total");
-// const sboost = document.querySelector('#Stat-forms');
 const pkmnfz = document.querySelectorAll('.pkmnFormz');
-const stdesc = document.querySelectorAll('.stat-desc');
-const todesc = document.querySelector('#TotalDesc');
-const bastat = document.querySelector("#BaseStats");
+
 const topare = document.querySelector("#top");
 const sbinnr = document.querySelector('#StFormsInner');
-const stacfh = document.querySelector('#scfHea');
-const credih = document.querySelector('#credHea');
-const height = document.querySelector('#height');
-const weight = document.querySelector('#weight');
-const pabili = document.querySelector('#abilities');
-const pkabil = document.querySelectorAll('.ability')
+
+const counta = document.querySelector("#countable");
+const consum = document.querySelector("#consumable");
+const useove = document.querySelector("#usable-overworld");
+const usebat = document.querySelector("#usable-in-battle");
+const holdab = document.querySelector("#holdable");
+const holdpa = document.querySelector("#holdable-passive");
+const holdac = document.querySelector("#holdable-active");
+const underg = document.querySelector("#underground");
+const pkmmov = document.querySelector("#machineMove");
 
 
 let shinyLock = "off"; // Change from const to let to allow modification
@@ -5884,12 +5861,6 @@ function shinyLocks() {
   }
 }
 
-
-
-function getRandomInt(max) {
-  return Math.floor(Math.random() * max);
-}
-
 function setTypeTo(sourceData) {
   const mainColor = typeColors[sourceData.types[0].type.name];
   ptypes.innerHTML = '';
@@ -6044,4 +6015,7 @@ function toTitleCase(str) {
     /\w\S*/g,
     text => text.charAt(0).toUpperCase() + text.substring(1).toLowerCase()
   );
+}
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
 }
