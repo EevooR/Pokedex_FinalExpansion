@@ -3293,7 +3293,7 @@ search.addEventListener('change', async (event) => {
       // Optionally handle the UI for error (e.g., reset other elements)
       number.innerHTML = "#0000";  // Reset number
       pimage.src = "Assets/0.png";             // Clear image
-      const audio = new Audio('Assets\cries_pokemon_legacy_32.ogg');
+      const audio = new Audio('Assets/cries_pokemon_legacy_32.ogg');
       audio.play();
       ptypes.innerHTML = ''; // Clear the current types
       let newType = document.createElement('span');
