@@ -399,16 +399,16 @@ function update(pkmnData) {
 
 
   try {
-    if (pkmnData.effect_entries[0].effect !== null) {
+    if (pkmnData.effect_entries[1].effect !== null) {
       longef.style.display = 'block'
-      longef.innerHTML = pkmnData.effect_entries[0].effect
+      longef.innerHTML = pkmnData.effect_entries[1].effect
     } else {
       longef.style.display = 'none'
     }
 
-    if (pkmnData.effect_entries[0].short_effect !== null) {
+    if (pkmnData.effect_entries[1].short_effect !== null) {
       shorte.style.display = 'block'
-      shorte.innerHTML = pkmnData.effect_entries[0].short_effect
+      shorte.innerHTML = pkmnData.effect_entries[1].short_effect
     } else {
       shorte.style.display = 'none'
     }
